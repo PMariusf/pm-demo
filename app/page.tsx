@@ -13,12 +13,15 @@ const details: Record<Section, string> = {
   Discuss: "Try the discussion layout below. Posts exist only until you reload this page.",
 };
 
+// Fixed integer heights ensure identical server and client markup during hydration.
+const waveHeights = [8, 21, 15, 30, 11, 25, 18, 29, 9, 26, 12, 23, 16, 29, 11, 24, 18, 31, 12, 25, 9, 22, 17, 28, 10, 25, 16, 30, 13, 26, 8, 23, 15, 20];
+
 function Lines({ count = 4 }: { count?: number }) {
   return <div className="lines" aria-hidden="true">{Array.from({ length: count }, (_, i) => <span key={i} style={{ width: `${88 - (i % 3) * 16}%` }} />)}</div>;
 }
 
 function Preview({ section }: { section: Section }) {
-  if (section === "Music") return <div className="preview music-preview"><div className="preview-image singer-image"><span className="round-play">▶</span></div><div className="wave" aria-hidden="true">{Array.from({ length: 34 }, (_, i) => <i key={i} style={{ height: `${6 + Math.abs(Math.sin(i * 1.6) * Math.cos(i * 0.37)) * 23}px` }} />)}</div>{[0, 1, 2].map(i => <div className="track" key={i}><span className="track-avatar"/><span className="track-line"/><span>▷</span></div>)}</div>;
+  if (section === "Music") return <div className="preview music-preview"><div className="preview-image singer-image"><span className="round-play">▶</span></div><div className="wave" aria-hidden="true">{waveHeights.map((height, i) => <i key={i} style={{ height: `${height}px` }} />)}</div>{[0, 1, 2].map(i => <div className="track" key={i}><span className="track-avatar"/><span className="track-line"/><span>▷</span></div>)}</div>;
   if (section === "Lyrics") return <div className="preview"><div className="preview-image notebook-image"/><Lines count={5}/></div>;
   if (section === "Feel") return <div className="preview portrait-preview" role="img" aria-label="Atmospheric illustrated singer portrait"/>;
   if (section === "Read") return <div className="preview"><div className="preview-image notebook-image read-image"/><Lines count={4}/></div>;
