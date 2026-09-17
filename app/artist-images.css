@@ -1,20 +1,19 @@
-/* Artist portraits: show more of the side portrait without stretching or zooming it. */
+/* Hero artwork: show the new landscape image without stretching or forcing a tight crop. */
 .hero-art {
-  background-image: url('/images/Ayline/Ayline-side.jpeg');
+  background-image: url('/images/Ayline/Aylina-landscape.png');
   background-repeat: no-repeat;
   background-position: right center;
-  /* A fixed height-relative scale avoids the severe crop caused by cover. */
-  background-size: auto 74%;
-  width: 82%;
-  inset: -54px 0 -54px auto;
+  background-size: contain;
+  /* Overscan gives the scroll effect room to move without exposing an edge. */
+  inset: -80px 0;
+  width: 100%;
   transform: translate3d(0, 0, 0);
   will-change: transform;
 }
 
-/* The scroll transform is controlled by ParallaxController, not CSS view timelines.
-   The artwork moves independently of the title and buttons. */
+/* ParallaxController moves only the artwork; the text and buttons stay still. */
 
-/* Keep the earlier portraits in the smaller cards. */
+/* Keep the previous portraits inside the smaller cards. */
 .singer-image {
   background-image: linear-gradient(0deg, #090b0d, transparent 40%), url('/images/Ayline/Aylina.png');
   background-position: 54% 43%;
@@ -30,9 +29,10 @@
 
 @media (max-width: 760px) {
   .hero-art {
-    width: 100%;
-    background-position: 75% center;
-    background-size: auto 70%;
+    /* On narrow screens keep the subject visible instead of squeezing the image. */
+    inset: -80px 0;
+    background-size: auto 100%;
+    background-position: 70% center;
   }
 }
 
