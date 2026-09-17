@@ -1,0 +1,21 @@
+/* Artist image overrides: preserve aspect ratio by cropping rather than stretching. */
+.hero-art {
+  background-image: url('/images/Ayline/Aylina.png');
+  background-position: 58% 45%;
+  background-size: cover;
+}
+.singer-image {
+  background-image: linear-gradient(0deg, #090b0d, transparent 40%), url('/images/Ayline/Aylina.png');
+  background-position: 54% 43%;
+  background-size: cover;
+}
+.portrait-preview {
+  background-image: linear-gradient(0deg, #090b0d11, #090b0d00), url('/images/Ayline/Aylina1.png');
+  background-position: center 35%;
+  background-size: cover;
+}
+.track-avatar { background-image: url('/images/Ayline/Aylina.png'); }
+.avatar { background-image: url('/images/Ayline/Aylina1.png'); }
+@media (max-width: 760px) {
+  .hero-art { background-position: 62% center; }
+}
