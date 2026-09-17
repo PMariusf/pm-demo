@@ -1,69 +1,66 @@
-import Image from "next/image";
+"use client";
+
+import { useEffect, useRef, useState, type FormEvent } from "react";
+
+type Section = "Music" | "Lyrics" | "Feel" | "Read" | "Chat" | "Discuss";
+const sections: Section[] = ["Music", "Lyrics", "Feel", "Read", "Chat", "Discuss"];
+const details: Record<Section, string> = {
+  Music: "A space for the songs. The player will be connected when audio files are ready.",
+  Lyrics: "The words behind the music. Song lyrics will be added here.",
+  Feel: "The emotion, the images, and the atmosphere behind every track.",
+  Read: "Stories, notes and the moments that inspired the music.",
+  Chat: "Try the chat layout below. This demo does not send or save messages online.",
+  Discuss: "Try the discussion layout below. Posts exist only until you reload this page.",
+};
+
+function Lines({ count = 4 }: { count?: number }) {
+  return <div className="lines" aria-hidden="true">{Array.from({ length: count }, (_, i) => <span key={i} style={{ width: `${88 - (i % 3) * 16}%` }} />)}</div>;
+}
+
+function Preview({ section }: { section: Section }) {
+  if (section === "Music") return <div className="preview music-preview"><div className="preview-image singer-image"><span className="round-play">▶</span></div><div className="wave" aria-hidden="true">{Array.from({ length: 34 }, (_, i) => <i key={i} style={{ height: `${6 + Math.abs(Math.sin(i * 1.6) * Math.cos(i * 0.37)) * 23}px` }} />)}</div>{[0, 1, 2].map(i => <div className="track" key={i}><span className="track-avatar"/><span className="track-line"/><span>▷</span></div>)}</div>;
+  if (section === "Lyrics") return <div className="preview"><div className="preview-image notebook-image"/><Lines count={5}/></div>;
+  if (section === "Feel") return <div className="preview portrait-preview" role="img" aria-label="Atmospheric illustrated singer portrait"/>;
+  if (section === "Read") return <div className="preview"><div className="preview-image notebook-image read-image"/><Lines count={4}/></div>;
+  if (section === "Chat") return <div className="preview chat-preview" aria-hidden="true"><div className="chat-bubble"><span className="avatar"/><Lines count={2}/></div><div className="chat-bubble reply"><Lines count={2}/></div><div className="chat-bubble"><span className="avatar"/><Lines count={2}/></div><span className="fake-input">➤</span></div>;
+  return <div className="preview discussion-preview" aria-hidden="true">{[0, 1, 2, 3].map(i => <div className="discussion-row" key={i}><span className="discussion-avatar"/><Lines count={2}/></div>)}</div>;
+}
 
 export default function Home() {
-  return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/6 px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
-  );
+  const [active, setActive] = useState<Section>("Music");
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [query, setQuery] = useState("");
+  const [draft, setDraft] = useState("");
+  const [messages, setMessages] = useState<string[]>([]);
+  const [post, setPost] = useState("");
+  const [posts, setPosts] = useState<string[]>([]);
+  const searchInput = useRef<HTMLInputElement>(null);
+  useEffect(() => {
+    if (searchOpen) searchInput.current?.focus();
+  }, [searchOpen]);
+  useEffect(() => {
+    const close = (event: KeyboardEvent) => { if (event.key === "Escape") { setSearchOpen(false); setMenuOpen(false); } };
+    window.addEventListener("keydown", close);
+    return () => window.removeEventListener("keydown", close);
+  }, []);
+  function navigate(section: Section) {
+    setActive(section);
+    setMenuOpen(false);
+    setSearchOpen(false);
+    document.getElementById("explore")?.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+  }
+  function send(event: FormEvent<HTMLFormElement>) { event.preventDefault(); if (!draft.trim()) return; setMessages(previous => [...previous, draft.trim()]); setDraft(""); }
+  function publish(event: FormEvent<HTMLFormElement>) { event.preventDefault(); if (!post.trim()) return; setPosts(previous => [post.trim(), ...previous]); setPost(""); }
+  const found = sections.filter(section => `${section} ${details[section]}`.toLowerCase().includes(query.toLowerCase().trim()));
+  return <>
+    <a className="skip-link" href="#main">Skip to content</a>
+    <header className="header"><div className="shell header-inner"><a className="brand" href="#top" aria-label="PM’s home">PM`s</a><nav className="desktop-nav" aria-label="Main navigation">{sections.map(section => <button key={section} onClick={() => navigate(section)}>{section}</button>)}</nav><div className="header-tools"><button aria-label="Search" onClick={() => setSearchOpen(true)} className="icon-button">⌕</button><button aria-label="Open chat" className="icon-button profile" onClick={() => navigate("Chat")}>♙</button><button className="icon-button menu-button" aria-label={menuOpen ? "Close menu" : "Open menu"} aria-expanded={menuOpen} aria-controls="mobile-menu" onClick={() => setMenuOpen(current => !current)}>{menuOpen ? "✕" : "☰"}</button></div></div>{menuOpen && <nav id="mobile-menu" className="mobile-nav" aria-label="Mobile navigation">{sections.map(section => <button key={section} onClick={() => navigate(section)}>{section} <span>→</span></button>)}</nav>}</header>
+    <main id="main"><section className="hero" id="top" aria-labelledby="artist-title"><div className="hero-art" role="img" aria-label="Cinematic illustrated singer on a dark stage"/><div className="shell hero-content"><h1 id="artist-title">Alyine</h1><p className="tagline">Live it, Feel it Be It</p><div className="hero-actions"><button className="button gold-button" onClick={() => navigate("Music")}><span aria-hidden="true">▷</span>Music</button><button className="button outline-button" onClick={() => navigate("Chat")}><span aria-hidden="true">♧</span>Chat</button></div></div></section>
+    <section className="shell cards" aria-label="Explore PM’s"><div className="card-grid">{sections.map(section => <article className="feature-card" key={section}><button className="card-title" onClick={() => navigate(section)}><span>{section}</span><span aria-hidden="true">→</span></button><button className="card-preview-button" onClick={() => navigate(section)} aria-label={`Open ${section}`}><Preview section={section}/></button></article>)}</div></section>
+    <div className="crowd-art" role="img" aria-label="Illustrated audience at a concert"/>
+    <section className="detail" id="explore" aria-labelledby="explore-title"><div className="shell detail-inner"><p className="eyebrow">Explore / {active}</p><h2 id="explore-title">{active}</h2><p className="detail-copy">{details[active]}</p>{active === "Chat" && <div className="demo-panel"><p className="demo-label">LOCAL CHAT PREVIEW · No backend connected</p><div aria-live="polite" className="message-list">{messages.length === 0 && <p>Write a message to test the layout.</p>}{messages.map((message, index) => <p className="message" key={index}>{message}</p>)}</div><form onSubmit={send} className="demo-form"><label className="sr-only" htmlFor="message-input">Message</label><input id="message-input" placeholder="Write a message…" maxLength={500} value={draft} onChange={event => setDraft(event.target.value)}/><button type="submit">Send</button></form></div>}{active === "Discuss" && <div className="demo-panel"><p className="demo-label">LOCAL DISCUSSION PREVIEW · Posts are not saved</p><form onSubmit={publish} className="demo-form"><label className="sr-only" htmlFor="post-input">Post</label><input id="post-input" placeholder="Share your thoughts…" maxLength={500} value={post} onChange={event => setPost(event.target.value)}/><button type="submit">Post</button></form><div className="message-list" aria-live="polite">{posts.map((item, index) => <p className="message post" key={index}>{item}</p>)}</div></div>}{active !== "Chat" && active !== "Discuss" && <p className="coming-soon">Concept preview · Real {active.toLowerCase()} content comes next</p>}</div></section></main>
+    <footer className="footer"><div className="shell footer-inner"><span>PM`s · Alyine</span><span>Live it, Feel it Be It</span><span>Standalone concept demo</span></div></footer>
+    {searchOpen && <div className="search-overlay" onMouseDown={event => { if (event.target === event.currentTarget) setSearchOpen(false); }}><div className="search-panel" role="dialog" aria-modal="true" aria-labelledby="search-title"><div className="search-heading"><h2 id="search-title">Explore</h2><button className="icon-button" aria-label="Close search" onClick={() => setSearchOpen(false)}>✕</button></div><label className="sr-only" htmlFor="search-input">Search sections</label><input id="search-input" ref={searchInput} value={query} onChange={event => setQuery(event.target.value)} placeholder="Search music, lyrics, chat…"/>{found.length ? found.map(section => <button className="search-result" key={section} onClick={() => { setQuery(""); navigate(section); }}>{section}<span>→</span></button>) : <p className="no-results">No matching sections.</p>}<p className="escape-hint">Press Esc to close</p></div></div>}
+  </>;
 }
