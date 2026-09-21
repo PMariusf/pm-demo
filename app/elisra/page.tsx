@@ -3,6 +3,7 @@ import Link from "next/link";
 import styles from "./page.module.css";
 import heroStyles from "./hero.module.css";
 import ElisraParallax from "./ElisraParallax";
+import ElisraMotion from "./ElisraMotion";
 import MusicDeck from "./MusicDeck";
 
 export const metadata: Metadata = {
@@ -54,7 +55,7 @@ export default function ElisraPage() {
           <div className={styles.sectionHead}>
             <p className={styles.sectionIndex}>01 / MUSIC</p>
             <h2 id="music-title">Enter the <em>sound.</em></h2>
-            <p>A listening room for Elísra. Preview real audio files in the browser now; songs and lyrics will be available to everyone once recordings are added to the site.</p>
+            <p>A space for Elísra’s music. Try the player locally until the real audio and lyrics are added to the site.</p>
           </div>
           <MusicDeck />
         </section>
@@ -63,7 +64,7 @@ export default function ElisraPage() {
           <div className={styles.sectionHead}>
             <p className={styles.sectionIndex}>02 / SOUND</p>
             <h2 id="sound-title">Feel the <em>frequency.</em></h2>
-            <p>Three directions for the sonic design concept. The listening room above is ready for real recordings.</p>
+            <p>Three directions for the design concept. Music and playable tracks can be connected here later.</p>
           </div>
           <div className={styles.soundGrid}>
             {sounds.map((sound) => (
@@ -75,11 +76,11 @@ export default function ElisraPage() {
               </article>
             ))}
           </div>
-          <p className={styles.disclaimer}>Concept categories — no release details have been added yet.</p>
+          <p className={styles.disclaimer}>Concept preview — no audio or release details are connected yet.</p>
         </section>
 
         <section id="world" className={styles.world} aria-labelledby="world-title">
-          <div className={`${styles.worldMark} ${heroStyles.worldPortrait}`} role="img" aria-label="Elísra portrait" />
+          <ElisraMotion />
           <div className={styles.worldContent}>
             <p className={styles.sectionIndex}>03 / THE WORLD</p>
             <h2 id="world-title">Between the ancient<br />and the <em>electric.</em></h2>
