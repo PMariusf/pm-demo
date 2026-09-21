@@ -55,7 +55,7 @@ export default function ElisraPage() {
           <div className={styles.sectionHead}>
             <p className={styles.sectionIndex}>01 / MUSIC</p>
             <h2 id="music-title">Enter the <em>sound.</em></h2>
-            <p>Listen to Under My Skin with Elísra’s atmospheric video artwork. Song lyrics will be added when ready.</p>
+            <p>Listen to Under My Skin with Elísra’s atmospheric video artwork and read the full lyrics in the listening room.</p>
           </div>
           <MusicDeck />
         </section>
