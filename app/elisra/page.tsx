@@ -3,6 +3,7 @@ import Link from "next/link";
 import styles from "./page.module.css";
 import heroStyles from "./hero.module.css";
 import ElisraParallax from "./ElisraParallax";
+import MusicDeck from "./MusicDeck";
 
 export const metadata: Metadata = {
   title: "Elísra | PM’s",
@@ -23,6 +24,7 @@ export default function ElisraPage() {
         <div className={styles.headerInner}>
           <Link href="/" className={styles.pmBrand} aria-label="PM’s home">PM’s <span>/ ARTISTS</span></Link>
           <nav className={styles.nav} aria-label="Elísra page navigation">
+            <a href="#music">Music</a>
             <a href="#sound">Sound</a>
             <a href="#world">World</a>
             <a href="#visuals">Visuals</a>
@@ -41,18 +43,27 @@ export default function ElisraPage() {
             <p className={styles.tagline}>Ancient soul. <em>Future sound.</em></p>
             <p className={styles.intro}>A concept world of driving rhythms, luminous textures and cinematic atmosphere.</p>
             <div className={styles.actions}>
-              <a className={styles.primary} href="#sound">Explore the sound <span aria-hidden="true">↗</span></a>
+              <a className={styles.primary} href="#music">Listen to the music <span aria-hidden="true">↗</span></a>
               <a className={styles.secondary} href="#visuals">The visual world <span aria-hidden="true">↓</span></a>
             </div>
           </div>
           <div className={`${styles.heroBottom} ${heroStyles.bottom}`} aria-hidden="true"><span>ELÍSRA / VISUAL CONCEPT</span><span>SCROLL TO EXPLORE ↓</span></div>
         </section>
 
+        <section id="music" className={styles.section} aria-labelledby="music-title">
+          <div className={styles.sectionHead}>
+            <p className={styles.sectionIndex}>01 / MUSIC</p>
+            <h2 id="music-title">Enter the <em>sound.</em></h2>
+            <p>A listening room for Elísra. Preview real audio files in the browser now; songs and lyrics will be available to everyone once recordings are added to the site.</p>
+          </div>
+          <MusicDeck />
+        </section>
+
         <section id="sound" className={styles.section} aria-labelledby="sound-title">
           <div className={styles.sectionHead}>
-            <p className={styles.sectionIndex}>01 / SOUND</p>
+            <p className={styles.sectionIndex}>02 / SOUND</p>
             <h2 id="sound-title">Feel the <em>frequency.</em></h2>
-            <p>Three directions for the design concept. Music and playable tracks can be connected here later.</p>
+            <p>Three directions for the sonic design concept. The listening room above is ready for real recordings.</p>
           </div>
           <div className={styles.soundGrid}>
             {sounds.map((sound) => (
@@ -64,13 +75,13 @@ export default function ElisraPage() {
               </article>
             ))}
           </div>
-          <p className={styles.disclaimer}>Concept preview — no audio or release details are connected yet.</p>
+          <p className={styles.disclaimer}>Concept categories — no release details have been added yet.</p>
         </section>
 
         <section id="world" className={styles.world} aria-labelledby="world-title">
           <div className={`${styles.worldMark} ${heroStyles.worldPortrait}`} role="img" aria-label="Elísra portrait" />
           <div className={styles.worldContent}>
-            <p className={styles.sectionIndex}>02 / THE WORLD</p>
+            <p className={styles.sectionIndex}>03 / THE WORLD</p>
             <h2 id="world-title">Between the ancient<br />and the <em>electric.</em></h2>
             <p>Elísra’s visual direction explores a contrast of timeless symbols and futuristic light. A separate space within PM’s, with its own atmosphere.</p>
             <a href="#visuals" className={styles.textLink}>Explore the visuals <span aria-hidden="true">↗</span></a>
@@ -79,7 +90,7 @@ export default function ElisraPage() {
 
         <section id="visuals" className={styles.visuals} aria-labelledby="visuals-title">
           <div className={styles.sectionHead}>
-            <p className={styles.sectionIndex}>03 / VISUALS</p>
+            <p className={styles.sectionIndex}>04 / VISUALS</p>
             <h2 id="visuals-title">A world in <em>motion.</em></h2>
             <p>Elísra’s portraits, presented as a first look at the visual world.</p>
           </div>
