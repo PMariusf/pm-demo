@@ -1,6 +1,9 @@
 /* Route-specific Elísra photo styling; no changes to Aylina's homepage. */
 .hero {
   background: #08070e;
+  /* The image intentionally extends 85px beyond the hero for parallax movement.
+     Clip that overscan so it cannot spill into Music and create a horizontal seam. */
+  overflow: hidden;
 }
 
 .photo {
