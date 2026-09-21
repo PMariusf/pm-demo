@@ -1,0 +1,47 @@
+/* Ayline's warm cinematic identity; scoped to the homepage's existing classes. */
+body:has(.ayline-home) { background: #08090b; }
+.ayline-home { --ayline-gold: #f3d0a0; --ayline-muted: #c4b9ae; }
+.ayline-home .header { height: 76px; border-bottom: 1px solid #ecd2ae22; background: #090a0ce8; backdrop-filter: blur(18px); }
+.ayline-home .header-inner { gap: 26px; }
+.ayline-home .brand { font-size: 37px; letter-spacing: -.075em; color: #f8e2be; }
+.ayline-home .desktop-nav button { color: #e0d8d1; font-size: 12px; font-weight: 700; letter-spacing: .075em; }
+.ayline-home .desktop-nav button:hover { color: #ffe1ac; }
+.ayline-home .header-tools { border-color: #e7c6a044; }
+.ayline-home .hero { height: clamp(590px, 75svh, 790px); min-height: 590px; background: radial-gradient(ellipse at 75% 35%, #3a2425 0%, #0c0c10 58%, #08090b 100%); }
+.ayline-home .hero-art { inset: -70px 0; width: 100%; background-position: right center; background-size: contain; }
+.ayline-home .hero::before { background: linear-gradient(90deg, #08090b 1%, #08090bef 26%, #08090bbd 43%, #08090b37 70%, #08090b44 100%); }
+.ayline-home .hero::after { background: linear-gradient(0deg, #08090b 0%, transparent 31%, transparent 85%, #08090b49 100%); }
+.ayline-home .hero-content { position: relative; z-index: 1; padding-block: 92px 110px; align-items: flex-start; }
+.ayline-home .hero-kicker { margin: 0 0 23px; display: flex; align-items: center; gap: 13px; color: #f2d2a0; font: 700 11px/1.5 Arial,sans-serif; letter-spacing: .27em; text-transform: uppercase; }
+.ayline-home .hero-kicker::before { content: ''; width: 27px; height: 1px; background: #f2d2a0; }
+.ayline-home .hero h1 { font: 700 clamp(92px, 11.8vw, 184px)/.88 Georgia,'Times New Roman',serif; letter-spacing: -.077em; margin: 0; color: #fff9f2; text-shadow: 0 9px 43px #0009; }
+.ayline-home .tagline { font: italic 400 clamp(24px, 3.15vw, 46px)/1.2 Georgia,'Times New Roman',serif; color: #f1c995; margin: 24px 0 0; letter-spacing: -.035em; text-shadow: 0 5px 23px #000b; }
+.ayline-home .hero-description { max-width: 430px; margin: 23px 0 0; color: #e1d7cc; font-size: clamp(14px,1.2vw,16px); line-height: 1.7; text-shadow: 0 2px 12px #000; }
+.ayline-home .hero-actions { margin-top: 31px; }
+.ayline-home .button { min-width: 174px; border-radius: 4px; height: 55px; font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+.ayline-home .gold-button { color: #1b1109; background: linear-gradient(110deg, #ddae72, #f7ddae 51%, #d1a06d); box-shadow: 0 13px 35px #c68a4330; }
+.ayline-home .outline-button { background: #0c0c11b8; border: 1px solid #f6e3ca70; }
+.ayline-home .hero-footnote { position: absolute; left: 0; bottom: 29px; color: #e1cdaf9c; font: 700 10px/1.3 Arial,sans-serif; letter-spacing: .22em; }
+.ayline-home .cards { margin-top: 0; padding-top: 57px; padding-bottom: 64px; }
+.ayline-home .cards-heading { display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; padding: 0 0 28px; border-bottom: 1px solid #e7ca9d29; margin-bottom: 25px; }
+.ayline-home .cards-overline { display: block; color: #edc593; font: 700 10px/1.5 Arial,sans-serif; letter-spacing: .28em; text-transform: uppercase; margin: 0 0 9px; }
+.ayline-home .cards-heading h2 { color: #fff8f0; margin: 0; font: 700 clamp(32px, 4vw, 54px)/1.08 Georgia,serif; letter-spacing: -.048em; }
+.ayline-home .cards-heading h2 em { font-weight: 400; color: #e5bd8b; }
+.ayline-home .cards-heading > p { max-width: 310px; color: #bfb4a8; font: 13px/1.7 Arial,sans-serif; margin: 0 0 3px; }
+.ayline-home .card-grid { grid-template-columns: repeat(3,minmax(0,1fr)); gap: 20px; }
+.ayline-home .feature-card { height: 335px; padding: 15px; border-radius: 5px; background: linear-gradient(145deg,#1d1a1a,#0e0e11); border: 1px solid #edd0ad2a; transition: transform .2s ease,border-color .2s ease,box-shadow .2s ease; }
+.ayline-home .feature-card:hover { transform: translateY(-5px); border-color: #e9c18b9c; box-shadow: 0 24px 47px #0008; }
+.ayline-home .card-title { padding: 1px 4px 14px; font-size: clamp(25px,2.1vw,35px); letter-spacing: -.035em; }
+.ayline-home .card-title span:last-child { color: #e3b883; }
+.ayline-home .card-preview-button { border-radius: 2px; border-color: #e6d2b226; }
+.ayline-home .card-preview-button:hover .preview-image, .ayline-home .card-preview-button:hover .portrait-preview { filter: brightness(1.12); }
+.ayline-home .crowd-art { height: 145px; margin-top: -20px; opacity: .7; background-size: cover; }
+.ayline-home .detail { padding: 74px 0 108px; background: radial-gradient(ellipse at 85% 0%,#291b1c64,#090b0d 60%); }
+.ayline-home .detail-inner { border-top-color: #e6bd894d; }
+.ayline-home .detail h2 { color: #fff7ef; letter-spacing: -.045em; }
+.ayline-home .footer { background: #09090b; border-top-color: #e4b9862d; }
+.ayline-home .footer-inner { align-items: center; }
+@media(max-width:1100px) { .ayline-home .card-grid { grid-template-columns: repeat(2,minmax(0,1fr)); } .ayline-home .hero { height: 625px; } .ayline-home .hero::before { background:linear-gradient(90deg,#08090b 2%,#08090be6 36%,#08090b38 100%); } }
+@media(max-width:760px) { .ayline-home .header { height: 64px; } .ayline-home .hero { height: 640px; min-height: 590px; } .ayline-home .hero-art { inset: -65px 0; background-size: auto 100%; background-position: 70% center; } .ayline-home .hero::before { background: linear-gradient(0deg,#08090b 0%,#08090be8 21%,#08090b74 56%,#08090b65 100%),linear-gradient(90deg,#08090b91,transparent 90%); } .ayline-home .hero-content { justify-content: flex-end; padding-top: 95px; padding-bottom: 102px; } .ayline-home .hero h1 { font-size: clamp(77px, 15vw, 115px); } .ayline-home .hero-kicker { margin-bottom: 17px; } .ayline-home .tagline { font-size: clamp(25px,5vw,37px); margin-top: 18px; } .ayline-home .hero-description { max-width: 390px; margin-top: 16px; } .ayline-home .hero-actions { margin-top: 24px; } .ayline-home .hero-footnote { bottom: 28px; } .ayline-home .cards { padding-top: 43px; padding-bottom: 52px; } .ayline-home .cards-heading { display: block; } .ayline-home .cards-heading > p { margin-top: 14px; } .ayline-home .feature-card { height: 330px; } .ayline-home .mobile-nav { top: 64px; } }
+@media(max-width:480px) { .ayline-home .hero { height: 620px; } .ayline-home .hero h1 { font-size: clamp(70px, 17vw, 85px); } .ayline-home .hero-kicker { font-size: 9px; letter-spacing: .19em; } .ayline-home .hero-description { font-size: 13px; } .ayline-home .hero-actions { width: 100%; gap: 10px; } .ayline-home .button { height: 50px; min-width: 0; font-size: 10px; letter-spacing: .06em; } .ayline-home .card-grid { grid-template-columns: 1fr; } .ayline-home .feature-card { height: 345px; } .ayline-home .cards-heading h2 { font-size: 37px; } }
+@media(prefers-reduced-motion:reduce) { .ayline-home .feature-card { transition: none; } }
