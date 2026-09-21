@@ -12,9 +12,12 @@ export default function MusicDeck() {
   const [selectedId, setSelectedId] = useState<string | null>(publishedTracks[0]?.id ?? null);
   const [draftLyrics, setDraftLyrics] = useState<Record<string, string>>({});
   const [notice, setNotice] = useState("");
-  const [videoUnavailable, setVideoUnavailable] = useState(false);
+  // A separate video element is mounted for the fallback. Browsers do not always
+  // advance from an undecodable MOV <source> to the next <source> automatically.
+  const [videoSourceIndex, setVideoSourceIndex] = useState(0);
   const objectUrls = useRef<string[]>([]);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const audioRef = useRef<HTMLAudioElement>(null);
 
   // Local previews stay in the browser; release their object URLs on exit.
   useEffect(() => () => {
@@ -25,7 +28,9 @@ export default function MusicDeck() {
   const selected = tracks.find((track) => track.id === selectedId) ?? tracks[0] ?? null;
   const isPreview = selected ? previews.some((track) => track.id === selected.id) : false;
   const lyrics = selected ? (draftLyrics[selected.id] ?? selected.lyrics ?? "") : "";
-  const showVideo = Boolean(selected?.videoSrc && !videoUnavailable && !isPreview);
+  const videoSrc = isPreview ? undefined : videoSourceIndex === 0
+    ? selected?.videoSrc
+    : videoSourceIndex === 1 ? selected?.fallbackVideoSrc : undefined;
 
   function pauseVideo(reset = false) {
     const video = videoRef.current;
@@ -34,17 +39,23 @@ export default function MusicDeck() {
     if (reset) video.currentTime = 0;
   }
 
+  function tryFallbackVideo() {
+    setVideoSourceIndex((current) => current === 0 && selected?.fallbackVideoSrc ? 1 : 2);
+  }
+
   function playVideo() {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const video = videoRef.current;
-    if (video) void video.play().catch(() => {
-      // The poster remains in place if browser autoplay policy or codec prevents video.
+    if (!video) return;
+    void video.play().catch((error: unknown) => {
+      // A media error can reject play() without firing an error on <video>.
+      if (error instanceof DOMException && error.name === "NotSupportedError") tryFallbackVideo();
     });
   }
 
   function selectTrack(id: string) {
     pauseVideo(true);
-    setVideoUnavailable(false);
+    setVideoSourceIndex(0);
     setSelectedId(id);
   }
 
@@ -71,7 +82,7 @@ export default function MusicDeck() {
     objectUrls.current = next.map((track) => track.audioSrc);
     setPreviews(next);
     setSelectedId(next[0].id);
-    setVideoUnavailable(false);
+    setVideoSourceIndex(0);
     setDraftLyrics({});
     setNotice(`${next.length} local ${next.length === 1 ? "track" : "tracks"} ready. Nothing was uploaded to the website.`);
   }
@@ -89,24 +100,26 @@ export default function MusicDeck() {
             role="img"
             aria-label={selected ? `Elísra artwork for ${selected.title}, with optional silent video` : "Elísra artwork"}
           >
-            {showVideo && selected?.videoSrc && (
+            {videoSrc && selected && (
               <video
-                key={selected.id}
+                key={`${selected.id}-${videoSourceIndex}`}
                 ref={videoRef}
                 className={videoStyles.video}
+                src={videoSrc}
                 muted
                 loop
                 playsInline
-                preload="none"
+                preload="metadata"
                 poster="/images/Elisra/Elísra.png"
-                onError={() => setVideoUnavailable(true)}
+                onError={tryFallbackVideo}
+                onCanPlay={() => {
+                  // The MP3 may already be playing by the time the video loads.
+                  if (audioRef.current && !audioRef.current.paused) playVideo();
+                }}
                 aria-hidden="true"
-              >
-                <source src={selected.videoSrc} type={selected.videoType ?? "video/mp4"} />
-                {selected.fallbackVideoSrc && <source src={selected.fallbackVideoSrc} type="video/mp4" />}
-              </video>
+              />
             )}
-            {showVideo && <span className={videoStyles.videoCaption}>SILENT VIDEO LOOP · MP3 AUDIO</span>}
+            {videoSrc && <span className={videoStyles.videoCaption}>SILENT VIDEO LOOP · MP3 AUDIO</span>}
             <span className={styles.artLabel}>ELÍSRA / {selected?.title.toUpperCase() ?? "UNDER MY SKIN"}</span>
           </div>
           <div className={styles.playerInfo}>
@@ -116,6 +129,7 @@ export default function MusicDeck() {
             {selected ? (
               <audio
                 key={selected.id}
+                ref={audioRef}
                 className={styles.audio}
                 controls
                 preload="metadata"
