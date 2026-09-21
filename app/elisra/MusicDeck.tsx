@@ -12,14 +12,12 @@ export default function MusicDeck() {
   const [selectedId, setSelectedId] = useState<string | null>(publishedTracks[0]?.id ?? null);
   const [draftLyrics, setDraftLyrics] = useState<Record<string, string>>({});
   const [notice, setNotice] = useState("");
-  // A separate video element is mounted for the fallback. Browsers do not always
-  // advance from an undecodable MOV <source> to the next <source> automatically.
   const [videoSourceIndex, setVideoSourceIndex] = useState(0);
   const objectUrls = useRef<string[]>([]);
   const videoRef = useRef<HTMLVideoElement>(null);
   const audioRef = useRef<HTMLAudioElement>(null);
 
-  // Local previews stay in the browser; release their object URLs on exit.
+  // Local audio previews are never uploaded and their URLs are released on exit.
   useEffect(() => () => {
     objectUrls.current.forEach((url) => URL.revokeObjectURL(url));
   }, []);
@@ -48,7 +46,6 @@ export default function MusicDeck() {
     const video = videoRef.current;
     if (!video) return;
     void video.play().catch((error: unknown) => {
-      // A media error can reject play() without firing an error on <video>.
       if (error instanceof DOMException && error.name === "NotSupportedError") tryFallbackVideo();
     });
   }
@@ -98,7 +95,7 @@ export default function MusicDeck() {
           <div
             className={`${styles.artwork} ${selected?.id === "no-way-back" ? videoStyles.artistArtwork : ""}`}
             role="img"
-            aria-label={selected ? `Elísra artwork for ${selected.title}, with optional silent video` : "Elísra artwork"}
+            aria-label={selected ? `Elísra video artwork for ${selected.title}` : "Elísra artwork"}
           >
             {videoSrc && selected && (
               <video
@@ -106,15 +103,15 @@ export default function MusicDeck() {
                 ref={videoRef}
                 className={videoStyles.video}
                 src={videoSrc}
+                autoPlay
                 muted
                 loop
                 playsInline
-                preload="metadata"
-                poster="/images/Elisra/Elísra.png"
+                preload="auto"
                 onError={tryFallbackVideo}
                 onCanPlay={() => {
-                  // The MP3 may already be playing by the time the video loads.
-                  if (audioRef.current && !audioRef.current.paused) playVideo();
+                  // Show the moving MP4 artwork as soon as it is ready, even before audio is played.
+                  playVideo();
                 }}
                 aria-hidden="true"
               />
