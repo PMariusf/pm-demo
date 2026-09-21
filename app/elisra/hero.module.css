@@ -1,8 +1,7 @@
 /* Route-specific Elísra photo styling; no changes to Aylina's homepage. */
 .hero {
   background: #08070e;
-  /* The image intentionally extends 85px beyond the hero for parallax movement.
-     Clip that overscan so it cannot spill into Music and create a horizontal seam. */
+  /* Keep parallax overscan inside the hero, never bleeding into Music. */
   overflow: hidden;
 }
 
@@ -29,14 +28,8 @@
     linear-gradient(0deg, #08070eea 0%, transparent 29%, transparent 78%, #08070e35 100%);
 }
 
-.content {
-  position: relative;
-  z-index: 2;
-}
-
-.bottom {
-  z-index: 2;
-}
+.content { position: relative; z-index: 2; }
+.bottom { z-index: 2; }
 
 .portraitOne,
 .portraitTwo,
@@ -51,6 +44,44 @@
 .portraitThree { background-image: url('/images/Elisra/Elísra2.png'); background-position: center 28%; }
 .worldPortrait { background-image: url('/images/Elisra/Elísra3.png'); background-position: center 35%; }
 
+/* Quiet motion portrait in the World section, below the music player. */
+.motionFrame {
+  position: relative;
+  width: min(100%, 440px);
+  aspect-ratio: 4 / 5;
+  align-self: center;
+  overflow: hidden;
+  border: 1px solid #bba7ff6b;
+  background: #0a0714 url('/images/Elisra/Elísra3.png') center / cover no-repeat;
+  box-shadow: 0 30px 90px #0008, 0 0 55px #8c5cff24;
+}
+.motionFrame::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(0deg, #08070ed8, transparent 35%);
+}
+.motionVideo,
+.motionFallback {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.motionFallback { background: url('/images/Elisra/Elísra3.png') center / cover no-repeat; }
+.motionCaption {
+  position: absolute;
+  z-index: 1;
+  bottom: 24px;
+  left: 22px;
+  color: #f2eaff;
+  font: 700 10px/1.5 Arial, sans-serif;
+  letter-spacing: .24em;
+  text-shadow: 0 2px 10px #000;
+}
+
 @media (max-width: 900px) {
   .photo { background-position: 60% center; }
   .tint {
@@ -61,6 +92,7 @@
 
 @media (max-width: 650px) {
   .photo { inset: -85px 0; background-position: 67% center; }
+  .motionFrame { width: min(100%, 330px); }
 }
 
 @media (prefers-reduced-motion: reduce) {
