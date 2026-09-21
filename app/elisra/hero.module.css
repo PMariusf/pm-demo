@@ -1,0 +1,65 @@
+/* Route-specific Elísra photo styling; no changes to Aylina's homepage. */
+.hero {
+  background: #08070e;
+}
+
+.photo {
+  position: absolute;
+  inset: -85px 0;
+  z-index: 0;
+  background-image: url('/images/Elisra/Elisra-landscape.png');
+  background-position: center 43%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  pointer-events: none;
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
+}
+
+.tint {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, #08070ef5 0%, #08070ed6 24%, #08070e72 48%, #08070e10 78%),
+    linear-gradient(0deg, #08070eea 0%, transparent 29%, transparent 78%, #08070e35 100%);
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+}
+
+.bottom {
+  z-index: 2;
+}
+
+.portraitOne,
+.portraitTwo,
+.portraitThree,
+.worldPortrait {
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.portraitOne { background-image: url('/images/Elisra/Elísra.png'); background-position: center 28%; }
+.portraitTwo { background-image: url('/images/Elisra/Elísra1.png'); background-position: center 32%; }
+.portraitThree { background-image: url('/images/Elisra/Elísra2.png'); background-position: center 28%; }
+.worldPortrait { background-image: url('/images/Elisra/Elísra3.png'); background-position: center 35%; }
+
+@media (max-width: 900px) {
+  .photo { background-position: 60% center; }
+  .tint {
+    background: linear-gradient(0deg, #08070ef7 0%, #08070edd 28%, #08070e35 75%, #08070e20 100%),
+                linear-gradient(90deg, #08070e88, transparent 75%);
+  }
+}
+
+@media (max-width: 650px) {
+  .photo { inset: -85px 0; background-position: 67% center; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .photo { will-change: auto; transform: none !important; }
+}

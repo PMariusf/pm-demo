@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import styles from "./page.module.css";
+import heroStyles from "./hero.module.css";
+import ElisraParallax from "./ElisraParallax";
 
 export const metadata: Metadata = {
   title: "Elísra | PM’s",
@@ -30,16 +32,10 @@ export default function ElisraPage() {
       </header>
 
       <main id="content">
-        <section className={styles.hero} aria-labelledby="elisra-title">
-          <div className={styles.grain} aria-hidden="true" />
-          <div className={styles.heroArt} aria-hidden="true">
-            <div className={styles.outerRing} />
-            <div className={styles.innerRing} />
-            <div className={styles.core} />
-            <span className={styles.orbitOne} />
-            <span className={styles.orbitTwo} />
-          </div>
-          <div className={styles.heroInner}>
+        <section className={`${styles.hero} ${heroStyles.hero}`} aria-labelledby="elisra-title">
+          <ElisraParallax />
+          <div className={heroStyles.tint} aria-hidden="true" />
+          <div className={`${styles.heroInner} ${heroStyles.content}`}>
             <p className={styles.kicker}><span className={styles.statusDot} /> PM’s / ARTIST UNIVERSE</p>
             <h1 id="elisra-title" className={styles.heroTitle}>Elísra<span aria-hidden="true">.</span></h1>
             <p className={styles.tagline}>Ancient soul. <em>Future sound.</em></p>
@@ -49,7 +45,7 @@ export default function ElisraPage() {
               <a className={styles.secondary} href="#visuals">The visual world <span aria-hidden="true">↓</span></a>
             </div>
           </div>
-          <div className={styles.heroBottom} aria-hidden="true"><span>ELÍSRA / VISUAL CONCEPT</span><span>SCROLL TO EXPLORE ↓</span></div>
+          <div className={`${styles.heroBottom} ${heroStyles.bottom}`} aria-hidden="true"><span>ELÍSRA / VISUAL CONCEPT</span><span>SCROLL TO EXPLORE ↓</span></div>
         </section>
 
         <section id="sound" className={styles.section} aria-labelledby="sound-title">
@@ -72,7 +68,7 @@ export default function ElisraPage() {
         </section>
 
         <section id="world" className={styles.world} aria-labelledby="world-title">
-          <div className={styles.worldMark} aria-hidden="true">E</div>
+          <div className={`${styles.worldMark} ${heroStyles.worldPortrait}`} role="img" aria-label="Elísra portrait" />
           <div className={styles.worldContent}>
             <p className={styles.sectionIndex}>02 / THE WORLD</p>
             <h2 id="world-title">Between the ancient<br />and the <em>electric.</em></h2>
@@ -85,12 +81,12 @@ export default function ElisraPage() {
           <div className={styles.sectionHead}>
             <p className={styles.sectionIndex}>03 / VISUALS</p>
             <h2 id="visuals-title">A world in <em>motion.</em></h2>
-            <p>Temporary abstract artwork. Elísra’s own portraits and covers can replace these panels when uploaded.</p>
+            <p>Elísra’s portraits, presented as a first look at the visual world.</p>
           </div>
           <div className={styles.visualGrid}>
-            <div className={`${styles.visualPanel} ${styles.visualOne}`}><span>01 — ORIGIN</span></div>
-            <div className={`${styles.visualPanel} ${styles.visualTwo}`}><span>02 — FREQUENCY</span></div>
-            <div className={`${styles.visualPanel} ${styles.visualThree}`}><span>03 — AFTERLIGHT</span></div>
+            <div className={`${styles.visualPanel} ${heroStyles.portraitOne}`} role="img" aria-label="Elísra artwork one"><span>01 — ORIGIN</span></div>
+            <div className={`${styles.visualPanel} ${heroStyles.portraitTwo}`} role="img" aria-label="Elísra artwork two"><span>02 — FREQUENCY</span></div>
+            <div className={`${styles.visualPanel} ${heroStyles.portraitThree}`} role="img" aria-label="Elísra artwork three"><span>03 — AFTERLIGHT</span></div>
           </div>
         </section>
       </main>
