@@ -57,19 +57,19 @@ export default function MusicDeck() {
       </div>
       <div className={styles.columns}>
         <div className={styles.playerSide}>
-          <div className={styles.artwork} role="img" aria-label="Elísra artist portrait, used as player artwork">
-            <span className={styles.artLabel}>ARTIST VISUAL / ELÍSRA</span>
+          <div className={styles.artwork} role="img" aria-label="Elísra Under My Skin artwork, with portrait fallback">
+            <span className={styles.artLabel}>ELÍSRA / UNDER MY SKIN</span>
           </div>
           <div className={styles.playerInfo}>
-            <p className={styles.miniLabel}>NOW SELECTED</p>
-            <h3>{selected?.title ?? "Your first track"}</h3>
-            <p className={styles.source}>{selected ? (isPreview ? "Local preview · Only on your device" : "Elísra · Site audio") : "Add a real recording to hear it here."}</p>
+            <p className={styles.miniLabel}>{selected ? "NOW SELECTED" : "FEATURED TRACK"}</p>
+            <h3>{selected?.title ?? "Under My Skin"}</h3>
+            <p className={styles.source}>{selected ? (isPreview ? "Local preview · Only on your device" : "Elísra · Site audio") : "Elísra · Recording not connected yet"}</p>
             {selected ? (
               <audio key={selected.id} className={styles.audio} controls preload="metadata" src={selected.audioSrc} aria-label={`Play ${selected.title}`}>
                 Your browser does not support audio playback.
               </audio>
             ) : (
-              <div className={styles.playerPlaceholder}>The player is ready. Choose a recording on the right to test it.</div>
+              <div className={styles.playerPlaceholder}>The player is ready. Choose a recording on the right to try it locally; permanent playback will be connected when the audio file is available.</div>
             )}
           </div>
         </div>
