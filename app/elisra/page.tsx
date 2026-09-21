@@ -55,7 +55,7 @@ export default function ElisraPage() {
           <div className={styles.sectionHead}>
             <p className={styles.sectionIndex}>01 / MUSIC</p>
             <h2 id="music-title">Enter the <em>sound.</em></h2>
-            <p>A space for Elísra’s music. Try the player locally until the real audio and lyrics are added to the site.</p>
+            <p>Listen to the available recording with an atmospheric video loop, or try your own audio locally. Song lyrics will be added when ready.</p>
           </div>
           <MusicDeck />
         </section>
@@ -64,7 +64,7 @@ export default function ElisraPage() {
           <div className={styles.sectionHead}>
             <p className={styles.sectionIndex}>02 / SOUND</p>
             <h2 id="sound-title">Feel the <em>frequency.</em></h2>
-            <p>Three directions for the design concept. Music and playable tracks can be connected here later.</p>
+            <p>Three directions for the design concept: rhythm, texture and melody.</p>
           </div>
           <div className={styles.soundGrid}>
             {sounds.map((sound) => (
@@ -76,7 +76,7 @@ export default function ElisraPage() {
               </article>
             ))}
           </div>
-          <p className={styles.disclaimer}>Concept preview — no audio or release details are connected yet.</p>
+          <p className={styles.disclaimer}>Sound directions are a visual concept, not additional playable tracks.</p>
         </section>
 
         <section id="world" className={styles.world} aria-labelledby="world-title">
