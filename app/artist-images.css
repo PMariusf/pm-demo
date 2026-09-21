@@ -27,12 +27,37 @@
 .track-avatar { background-image: url('/images/Ayline/Aylina.png'); }
 .avatar { background-image: url('/images/Ayline/Aylina1.png'); }
 
+/* Elísra has a separate route and visual identity within the same project. */
+.desktop-nav .elisra-link {
+  color: #cbb9ff;
+  border-left: 1px solid #ffffff35;
+  padding-left: 17px;
+  font-size: 14px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.desktop-nav .elisra-link:hover,
+.footer-artist-link:hover { color: #eee5ff; }
+.footer-artist-link {
+  color: #cbb9ff;
+  text-decoration: none;
+}
+
 @media (max-width: 760px) {
   .hero-art {
     /* On narrow screens keep the subject visible instead of squeezing the image. */
     inset: -80px 0;
     background-size: auto 100%;
     background-position: 70% center;
+  }
+  .mobile-nav .elisra-link {
+    display: flex;
+    justify-content: space-between;
+    color: #cbb9ff;
+    text-decoration: none;
+    text-align: left;
+    padding: 13px;
+    border-bottom: 1px solid #ffffff25;
   }
 }
 
