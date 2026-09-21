@@ -8,7 +8,7 @@ import MusicDeck from "./MusicDeck";
 
 export const metadata: Metadata = {
   title: "Elísra | PM’s",
-  description: "A visual concept for Elísra inside the PM’s artist universe.",
+  description: "Listen to Under My Skin and explore Elísra’s cinematic artist world inside PM’s.",
 };
 
 const sounds = [
@@ -55,7 +55,7 @@ export default function ElisraPage() {
           <div className={styles.sectionHead}>
             <p className={styles.sectionIndex}>01 / MUSIC</p>
             <h2 id="music-title">Enter the <em>sound.</em></h2>
-            <p>Listen to the available recording with an atmospheric video loop, or try your own audio locally. Song lyrics will be added when ready.</p>
+            <p>Listen to Under My Skin with Elísra’s atmospheric video artwork. Song lyrics will be added when ready.</p>
           </div>
           <MusicDeck />
         </section>
