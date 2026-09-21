@@ -1,14 +1,21 @@
-/**
- * Add only actual Elísra recordings here after placing audio in public/music/Elisra/.
- * Example shape (replace ALL values with real song details):
- * { id: "unique-id", title: "Actual song title", audioSrc: "/music/Elisra/actual-file.mp3", lyrics: "Actual lyrics" }
- * Do not list unreleased or nonexistent tracks as if they were available.
- */
+/** Only recordings actually present in the repository are listed here. */
 export type MusicTrack = {
   id: string;
   title: string;
   audioSrc: string;
+  videoSrc?: string;
+  videoType?: string;
+  fallbackVideoSrc?: string;
   lyrics?: string;
 };
 
-export const publishedTracks: MusicTrack[] = [];
+export const publishedTracks: MusicTrack[] = [
+  {
+    id: "no-way-back",
+    title: "No Way Back",
+    audioSrc: "/images/Elisra/No%20Way%20Back.mp3",
+    videoSrc: "/images/Elisra/Elisra-vid.mov",
+    videoType: "video/quicktime",
+    fallbackVideoSrc: "/images/Elisra/Elisra-wink.mp4",
+  },
+];
