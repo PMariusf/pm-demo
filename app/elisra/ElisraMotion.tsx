@@ -46,7 +46,7 @@ export default function ElisraMotion() {
           onError={() => setUnavailable(true)}
           aria-label="Silent Elísra motion portrait"
         >
-          <source src="/videos/Elisra/Elisra-wink.mp4" type="video/mp4" />
+          <source src="/images/Elisra/Elisra-wink.mp4" type="video/mp4" />
         </video>
       )}
       <span className={styles.motionCaption}>ELÍSRA / IN MOTION</span>
