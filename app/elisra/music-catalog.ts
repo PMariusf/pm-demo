@@ -1,4 +1,4 @@
-/** Only recordings actually present in the repository are listed here. */
+/** Elísra recordings available on the site. */
 export type MusicTrack = {
   id: string;
   title: string;
@@ -11,11 +11,10 @@ export type MusicTrack = {
 
 export const publishedTracks: MusicTrack[] = [
   {
+    // Stable internal ID and filename retain the Suno draft name.
     id: "no-way-back",
-    title: "No Way Back",
+    title: "Under My Skin",
     audioSrc: "/images/Elisra/No%20Way%20Back.mp3",
-    // The source MOV must be exported as H.264 MP4 for reliable browser playback.
-    // Until Elisra-vid.mp4 is uploaded, the existing wink clip is the fallback.
     videoSrc: "/images/Elisra/Elisra-vid.mp4",
     videoType: "video/mp4",
     fallbackVideoSrc: "/images/Elisra/Elisra-wink.mp4",
