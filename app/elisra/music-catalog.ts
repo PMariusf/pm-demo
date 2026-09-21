@@ -14,8 +14,10 @@ export const publishedTracks: MusicTrack[] = [
     id: "no-way-back",
     title: "No Way Back",
     audioSrc: "/images/Elisra/No%20Way%20Back.mp3",
-    videoSrc: "/images/Elisra/Elisra-vid.mov",
-    videoType: "video/quicktime",
+    // The source MOV must be exported as H.264 MP4 for reliable browser playback.
+    // Until Elisra-vid.mp4 is uploaded, the existing wink clip is the fallback.
+    videoSrc: "/images/Elisra/Elisra-vid.mp4",
+    videoType: "video/mp4",
     fallbackVideoSrc: "/images/Elisra/Elisra-wink.mp4",
   },
 ];
