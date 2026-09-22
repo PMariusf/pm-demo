@@ -22,7 +22,7 @@ function Lines({ count = 4 }: { count?: number }) {
 }
 
 function Preview({ section }: { section: Section }) {
-  if (section === "Music") return <div className="preview music-preview"><div className="preview-image singer-image"><span className="round-play">▶</span></div><div className="wave" aria-hidden="true">{waveHeights.map((height, i) => <i key={i} style={{ height: `${height}px` }} />)}</div>{[0, 1, 2].map(i => <div className="track" key={i}><span className="track-avatar"/><span className="track-line"/><span>▷</span></div>)}</div>;
+  if (section === "Music") return <div className="preview music-preview"><div className="preview-image singer-image"><video className="music-cover-video" autoPlay muted loop playsInline preload="metadata" poster="/images/Ayline/Aylina.png" aria-hidden="true"><source src="/videos/Ayline/rock-singer.mp4" type="video/mp4" /></video><span className="round-play">▶</span></div><div className="wave" aria-hidden="true">{waveHeights.map((height, i) => <i key={i} style={{ height: `${height}px` }} />)}</div>{[0, 1, 2].map(i => <div className="track" key={i}><span className="track-avatar"/><span className="track-line"/><span>▷</span></div>)}</div>;
   if (section === "Lyrics") return <div className="preview"><div className="preview-image notebook-image"/><Lines count={5}/></div>;
   if (section === "Feel") return <div className="preview portrait-preview" role="img" aria-label="Atmospheric illustrated singer portrait"/>;
   if (section === "Read") return <div className="preview"><div className="preview-image notebook-image read-image"/><Lines count={4}/></div>;
@@ -95,11 +95,7 @@ export default function Home() {
 
     <main id="main">
       <section className="hero" id="top" aria-labelledby="artist-title">
-        <div className="hero-art" aria-hidden="true">
-          <video className="hero-video" autoPlay muted loop playsInline preload="metadata" poster="/images/Ayline/Aylina-landscape.png">
-            <source src="/videos/Ayline/rock-singer.mp4" type="video/mp4" />
-          </video>
-        </div>
+        <div className="hero-art" role="img" aria-label="Cinematic portrait artwork of Ayline" />
         <div className="shell hero-content">
           <p className="hero-kicker">PM’s / Artist universe</p>
           <h1 id="artist-title">Ayline</h1>
