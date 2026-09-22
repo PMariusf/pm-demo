@@ -64,3 +64,38 @@
 @media (prefers-reduced-motion: reduce) {
   .hero-art { will-change: auto; transform: none !important; }
 }
+
+
+/* Ayline hero video: same cinematic moving-cover treatment as Elísra. */
+.hero-art {
+  overflow: hidden;
+  background: #090b0d url('/images/Ayline/Aylina-landscape.png') center / cover no-repeat;
+}
+
+.hero-video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.hero-art::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(90deg, #090b0d2e, transparent 45%, #090b0d20);
+}
+
+@media (max-width: 760px) {
+  .hero-video {
+    object-position: 58% center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-video {
+    visibility: hidden;
+  }
+}
