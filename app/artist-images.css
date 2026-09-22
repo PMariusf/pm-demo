@@ -15,9 +15,7 @@
 
 /* Keep the previous portraits inside the smaller cards. */
 .singer-image {
-  background-image: linear-gradient(0deg, #090b0d, transparent 40%), url('/images/Ayline/Aylina.png');
-  background-position: 54% 43%;
-  background-size: cover;
+  background: #090b0d;
   position: relative;
   overflow: hidden;
 }
@@ -25,7 +23,7 @@
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   object-position: center;
 }
 .singer-image .round-play { z-index: 1; }
@@ -74,4 +72,5 @@
 @media (prefers-reduced-motion: reduce) {
   .hero-art { will-change: auto; transform: none !important; }
   .music-cover-video { visibility: hidden; }
+  .singer-image { background: #090b0d url('/images/Ayline/Aylina.png') center / contain no-repeat; }
 }
