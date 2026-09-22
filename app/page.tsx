@@ -95,7 +95,11 @@ export default function Home() {
 
     <main id="main">
       <section className="hero" id="top" aria-labelledby="artist-title">
-        <div className="hero-art" role="img" aria-label="Cinematic portrait artwork of Ayline" />
+        <div className="hero-art" aria-hidden="true">
+          <video className="hero-video" autoPlay muted loop playsInline preload="metadata" poster="/images/Ayline/Aylina-landscape.png">
+            <source src="/videos/Ayline/rock-singer.mp4" type="video/mp4" />
+          </video>
+        </div>
         <div className="shell hero-content">
           <p className="hero-kicker">PM’s / Artist universe</p>
           <h1 id="artist-title">Ayline</h1>
