@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import "./globals.css";
 import "./artist-images.css";
 import "./ayline-refresh.css";
@@ -10,5 +11,5 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="en"><body>{children}<ParallaxController /></body></html>;
+  return <html lang="en"><body>{children}<div style={{ background: "#0b0b11", textAlign: "center", padding: "22px" }}><Link href="/lyrics" style={{ color: "#d7b985", textDecoration: "underline", textUnderlineOffset: 5 }}>Read Ayline’s song lyrics →</Link></div><ParallaxController /></body></html>;
 }
