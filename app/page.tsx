@@ -1,56 +1,100 @@
 "use client";
 
-import { useEffect, useRef, useState, type FormEvent } from "react";
+import { useState, type FormEvent } from "react";
 import Link from "next/link";
 import AylineLyricsCard from "./AylineLyricsCard";
 
-type Section = "Music" | "Lyrics" | "Feel" | "Read" | "Chat" | "Discuss";
-const sections: Section[] = ["Music", "Lyrics", "Feel", "Read", "Chat", "Discuss"];
-const details: Record<Section, string> = {
-  Music: "Listen to Ayline’s music in the Lyrics card above.",
-  Lyrics: "Choose a song and read along in the Lyrics card above.",
-  Feel: "The emotion, the images, and the atmosphere behind every track.",
-  Read: "Stories, notes and the moments that inspired the music.",
-  Chat: "Try the chat layout below. This demo does not send or save messages online.",
-  Discuss: "Try the discussion layout below. Posts exist only until you reload this page.",
-};
-const waveHeights = [8, 21, 15, 30, 11, 25, 18, 29, 9, 26, 12, 23, 16, 29, 11, 24, 18, 31, 12, 25, 9, 22, 17, 28, 10, 25, 16, 30, 13, 26, 8, 23, 15, 20];
-function Lines({ count = 4 }: { count?: number }) {
-  return <div className="lines" aria-hidden="true">{Array.from({ length: count }, (_, i) => <span key={i} style={{ width: `${88 - (i % 3) * 16}%` }} />)}</div>;
-}
-function Preview({ section }: { section: Section }) {
-  if (section === "Music") return <div className="preview music-preview"><div className="preview-image singer-image"><video className="music-cover-video" autoPlay muted loop playsInline preload="metadata" poster="/images/Ayline/Aylina.png" aria-hidden="true"><source src="/videos/Ayline/rock-singer.mp4" type="video/mp4" /></video><span className="round-play">▶</span></div><div className="wave" aria-hidden="true">{waveHeights.map((height, i) => <i key={i} style={{ height: `${height}px` }} />)}</div>{[0, 1, 2].map(i => <div className="track" key={i}><span className="track-avatar"/><span className="track-line"/><span>▷</span></div>)}</div>;
-  if (section === "Feel") return <div className="preview portrait-preview" role="img" aria-label="Atmospheric illustrated singer portrait"/>;
-  if (section === "Read") return <div className="preview"><div className="preview-image notebook-image read-image"/><Lines count={4}/></div>;
-  if (section === "Chat") return <div className="preview chat-preview" aria-hidden="true"><div className="chat-bubble"><span className="avatar"/><Lines count={2}/></div><div className="chat-bubble reply"><Lines count={2}/></div><div className="chat-bubble"><span className="avatar"/><Lines count={2}/></div><span className="fake-input">➤</span></div>;
-  return <div className="preview discussion-preview" aria-hidden="true">{[0, 1, 2, 3].map(i => <div className="discussion-row" key={i}><span className="discussion-avatar"/><Lines count={2}/></div>)}</div>;
-}
+const songs = [
+  { slug: "far-from-me", title: "Far From Me" },
+  { slug: "set-the-dark-on-fire", title: "Set the Dark on Fire" },
+  { slug: "one-more-time", title: "One More Time" },
+] as const;
+
 export default function Home() {
-  const [active, setActive] = useState<Section>("Music");
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [searchOpen, setSearchOpen] = useState(false);
-  const [query, setQuery] = useState("");
   const [draft, setDraft] = useState("");
   const [messages, setMessages] = useState<string[]>([]);
-  const [post, setPost] = useState("");
-  const [posts, setPosts] = useState<string[]>([]);
-  const searchInput = useRef<HTMLInputElement>(null);
-  useEffect(() => { if (searchOpen) searchInput.current?.focus(); }, [searchOpen]);
-  useEffect(() => { const close = (event: KeyboardEvent) => { if (event.key === "Escape") { setSearchOpen(false); setMenuOpen(false); } }; window.addEventListener("keydown", close); return () => window.removeEventListener("keydown", close); }, []);
-  function navigate(section: Section) {
-    setActive(section); setMenuOpen(false); setSearchOpen(false);
-    document.getElementById(section === "Lyrics" || section === "Music" ? "ayline-lyrics-card" : "explore")?.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "center" });
+
+  function scrollTo(id: string) {
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "center" });
   }
-  function send(event: FormEvent<HTMLFormElement>) { event.preventDefault(); if (!draft.trim()) return; setMessages(previous => [...previous, draft.trim()]); setDraft(""); }
-  function publish(event: FormEvent<HTMLFormElement>) { event.preventDefault(); if (!post.trim()) return; setPosts(previous => [post.trim(), ...previous]); setPost(""); }
-  const found = sections.filter(section => `${section} ${details[section]}`.toLowerCase().includes(query.toLowerCase().trim()));
-  return <div className="ayline-home">
+  function send(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    if (!draft.trim()) return;
+    setMessages(previous => [...previous, draft.trim()]);
+    setDraft("");
+  }
+
+  return <div className="ayline-home ayline-redesign">
     <a className="skip-link" href="#main">Skip to content</a>
-    <header className="header"><div className="shell header-inner"><a className="brand" href="#top" aria-label="PM’s home">PM’s</a><nav className="desktop-nav" aria-label="Main navigation">{sections.map(section => <button key={section} onClick={() => navigate(section)}>{section}</button>)}<Link className="elisra-link" href="/elisra">Elísra <span aria-hidden="true">↗</span></Link></nav><div className="header-tools"><button aria-label="Search" onClick={() => setSearchOpen(true)} className="icon-button">⌕</button><button aria-label="Open chat" className="icon-button profile" onClick={() => navigate("Chat")}>♙</button><button className="icon-button menu-button" aria-label={menuOpen ? "Close menu" : "Open menu"} aria-expanded={menuOpen} aria-controls="mobile-menu" onClick={() => setMenuOpen(current => !current)}>{menuOpen ? "✕" : "☰"}</button></div></div>{menuOpen && <nav id="mobile-menu" className="mobile-nav" aria-label="Mobile navigation">{sections.map(section => <button key={section} onClick={() => navigate(section)}>{section} <span>→</span></button>)}<Link className="elisra-link" href="/elisra">Elísra <span aria-hidden="true">↗</span></Link></nav>}</header>
-    <main id="main"><section className="hero" id="top" aria-labelledby="artist-title"><div className="hero-art" role="img" aria-label="Cinematic portrait artwork of Ayline" /><div className="shell hero-content"><p className="hero-kicker">PM’s / Artist universe</p><h1 id="artist-title">Ayline</h1><p className="tagline">Live it, Feel it Be It</p><p className="hero-description">Music, lyrics and stories. A space to listen, feel and discover the world behind the songs.</p><div className="hero-actions"><button className="button gold-button" onClick={() => navigate("Music")}><span aria-hidden="true">▷</span>Explore music</button><button className="button outline-button" onClick={() => navigate("Chat")}><span aria-hidden="true">♧</span>Chat demo</button></div><span className="hero-footnote" aria-hidden="true">AYLINE / SCROLL TO EXPLORE ↓</span></div></section>
-    <section className="shell cards" aria-labelledby="ayline-explore-title"><div className="cards-heading"><div><p className="cards-overline">01 / Discover</p><h2 id="ayline-explore-title">Explore <em>Ayline.</em></h2></div><p>Six spaces for the music, the words and the conversation around them.</p></div><div className="card-grid">{sections.map(section => <article className="feature-card" key={section} id={section === "Lyrics" ? "ayline-lyrics-card" : undefined}><button className="card-title" onClick={() => navigate(section)}><span>{section}</span><span aria-hidden="true">{section === "Lyrics" ? "↓" : "→"}</span></button>{section === "Lyrics" ? <AylineLyricsCard /> : <button className="card-preview-button" onClick={() => navigate(section)} aria-label={`Open ${section}`}><Preview section={section}/></button>}</article>)}</div></section>
-    <div className="crowd-art" role="img" aria-label="Illustrated audience at a concert"/><section className="detail" id="explore" aria-labelledby="explore-title"><div className="shell detail-inner"><p className="eyebrow">Explore / {active}</p><h2 id="explore-title">{active}</h2><p className="detail-copy">{details[active]}</p>{active === "Chat" && <div className="demo-panel"><p className="demo-label">LOCAL CHAT PREVIEW · No backend connected</p><div aria-live="polite" className="message-list">{messages.length === 0 && <p>Write a message to test the layout.</p>}{messages.map((message, index) => <p className="message" key={index}>{message}</p>)}</div><form onSubmit={send} className="demo-form"><label className="sr-only" htmlFor="message-input">Message</label><input id="message-input" placeholder="Write a message…" maxLength={500} value={draft} onChange={event => setDraft(event.target.value)}/><button type="submit">Send</button></form></div>}{active === "Discuss" && <div className="demo-panel"><p className="demo-label">LOCAL DISCUSSION PREVIEW · Posts are not saved</p><form onSubmit={publish} className="demo-form"><label className="sr-only" htmlFor="post-input">Post</label><input id="post-input" placeholder="Share your thoughts…" maxLength={500} value={post} onChange={event => setPost(event.target.value)}/><button type="submit">Post</button></form><div className="message-list" aria-live="polite">{posts.map((item, index) => <p className="message post" key={index}>{item}</p>)}</div></div>}{active !== "Chat" && active !== "Discuss" && active !== "Lyrics" && active !== "Music" && <p className="coming-soon">Concept preview · Real {active.toLowerCase()} content comes next</p>}</div></section></main>
+    <header className="header">
+      <div className="shell header-inner">
+        <a className="brand" href="#top">PM’s</a>
+        <nav className="desktop-nav" aria-label="Main navigation">
+          <button onClick={() => scrollTo("music")}>Music</button>
+          <button onClick={() => scrollTo("lyrics")}>Lyrics</button>
+          <button onClick={() => scrollTo("community")}>Feel</button>
+          <button onClick={() => scrollTo("lyrics")}>Read</button>
+          <button onClick={() => scrollTo("chat")}>Chat</button>
+          <button onClick={() => scrollTo("community")}>Discuss</button>
+          <Link className="elisra-link" href="/elisra">Elísra ↗</Link>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <section className="hero ayline-new-hero" id="top">
+        <div className="hero-art" aria-hidden="true" />
+        <div className="shell hero-content">
+          <p className="hero-kicker">MUSIC · PEOPLE · WORDS · A BRIGHTER YOU</p>
+          <h1>Ayline</h1>
+          <p className="tagline">Live it, Feel it Be It</p>
+          <p className="hero-description">Music for the quiet moments, the loud feelings<br />and everything in between.</p>
+          <div className="hero-actions">
+            <button className="button gold-button" onClick={() => scrollTo("music")}>▷ <strong>Music</strong></button>
+            <button className="button outline-button" onClick={() => scrollTo("chat")}>◯ <strong>Chat</strong></button>
+          </div>
+        </div>
+        <div className="hero-side-note" aria-hidden="true"><em>More<br/>than<br/>Music</em><span>SAME<br/>FEELINGS<br/>DIFFERENT<br/>PEOPLE</span></div>
+      </section>
+
+      <section className="shell ayline-dashboard" aria-label="Ayline music, lyrics and community">
+        <article className="dashboard-card music-panel" id="music">
+          <div className="panel-heading"><div><h2>Music</h2><p>Discover the sound of Ayline</p></div><button onClick={() => scrollTo("lyrics")}>See All ›</button></div>
+          <div className="music-panel-body">
+            <div className="music-feature"><video autoPlay muted loop playsInline preload="metadata" poster="/images/Ayline/Aylina.png"><source src="/videos/Ayline/rock-singer.mp4" type="video/mp4"/></video><span className="big-play">▶</span><strong>Ayline</strong><small>PM’s artist universe</small></div>
+            <div className="song-list">{songs.map(song => <div className="song-row" key={song.slug}><span className="song-thumb"/><span><strong>{song.title}</strong><small>Ayline</small></span><audio controls preload="none" src={`/audio/ayline/${song.slug}.mp3`} aria-label={`Play ${song.title}`}/></div>)}</div>
+          </div>
+        </article>
+
+        <article className="dashboard-card lyrics-panel" id="lyrics">
+          <div className="panel-heading"><div><h2>Lyrics <i>/</i> Read</h2><p>Dive deeper into the words</p></div></div>
+          <AylineLyricsCard />
+        </article>
+
+        <article className="dashboard-card chat-panel" id="chat">
+          <div className="panel-heading"><div><h2>Chat <i>/</i> Discuss</h2><p>Real conversations. Deeper connections.</p></div></div>
+          <div className="conversation-list">
+            <button onClick={() => scrollTo("community")}><span className="person-avatar"/><span><strong>What does this song mean to you?</strong><small>Share your thoughts</small></span><b>›</b></button>
+            <button onClick={() => scrollTo("community")}><span className="person-avatar second"/><span><strong>Favorite Ayline lyric right now?</strong><small>Talk about the words</small></span><b>›</b></button>
+            <button onClick={() => scrollTo("community")}><span className="person-avatar third"/><span><strong>Songs that stay with you</strong><small>Music and memories</small></span><b>›</b></button>
+          </div>
+        </article>
+      </section>
+
+      <section className="community-section" id="community">
+        <div className="shell community-content">
+          <p className="hero-kicker">A COMMUNITY THAT FEELS</p>
+          <h2>More Than Music</h2>
+          <p>Share your thoughts. Find your people.<br/>Feel a little less alone.</p>
+          <form className="community-form" onSubmit={send}>
+            <input value={draft} onChange={e => setDraft(e.target.value)} placeholder="Write something…" aria-label="Community message"/>
+            <button type="submit">Discuss</button>
+          </form>
+          {messages.length > 0 && <div className="community-messages">{messages.map((message,index)=><p key={index}>{message}</p>)}</div>}
+          <span className="community-note" aria-hidden="true">Same<br/>Songs<br/>Brighter<br/>People</span>
+        </div>
+      </section>
+    </main>
     <footer className="footer"><div className="shell footer-inner"><span>PM’s · Ayline</span><span>Live it, Feel it Be It</span><Link className="footer-artist-link" href="/elisra">Explore Elísra ↗</Link></div></footer>
-    {searchOpen && <div className="search-overlay" onMouseDown={event => { if (event.target === event.currentTarget) setSearchOpen(false); }}><div className="search-panel" role="dialog" aria-modal="true" aria-labelledby="search-title"><div className="search-heading"><h2 id="search-title">Explore</h2><button className="icon-button" aria-label="Close search" onClick={() => setSearchOpen(false)}>✕</button></div><label className="sr-only" htmlFor="search-input">Search sections</label><input id="search-input" ref={searchInput} value={query} onChange={event => setQuery(event.target.value)} placeholder="Search music, lyrics, chat…"/>{found.length ? found.map(section => <button className="search-result" key={section} onClick={() => { setQuery(""); navigate(section); }}>{section}<span>→</span></button>) : <p className="no-results">No matching sections.</p>}<p className="escape-hint">Press Esc to close</p></div></div>}
   </div>;
 }
