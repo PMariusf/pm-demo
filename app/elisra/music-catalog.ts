@@ -9,10 +9,11 @@ export type MusicTrack = {
   lyrics?: string;
 };
 
+const newVisual = "/images/Elisra/generated-video-cover-art-1791220543938.mp4";
+
 export const publishedTracks: MusicTrack[] = [
   {
-    // Stable internal ID and filename retain the Suno draft name.
-    id: "no-way-back",
+    id: "under-my-skin",
     title: "Under My Skin",
     audioSrc: "/images/Elisra/No%20Way%20Back.mp3",
     videoSrc: "/images/Elisra/Elisra-vid.mp4",
@@ -58,5 +59,33 @@ And I'm alone again
 To feel your heartbeat like it never really ended
 Maybe I was running from everything I knew
 Sooner in the silence I still come back to you`,
+  },
+  {
+    id: "digital-heart",
+    title: "Digital Heart",
+    audioSrc: "/audio/ayline/Elisra/Digital%20Heart.mp3",
+    videoSrc: newVisual,
+    videoType: "video/mp4",
+  },
+  {
+    id: "out-of-the-blue",
+    title: "Out of the Blue",
+    audioSrc: "/audio/ayline/Elisra/Out%20of%20the%20Blue.mp3",
+    videoSrc: newVisual,
+    videoType: "video/mp4",
+  },
+  {
+    id: "stay-with-me-tonight",
+    title: "Stay With Me Tonight",
+    audioSrc: "/audio/ayline/Elisra/Stay%20With%20Me%20Tonight.mp3",
+    videoSrc: newVisual,
+    videoType: "video/mp4",
+  },
+  {
+    id: "you-and-i",
+    title: "You and I",
+    audioSrc: "/audio/ayline/Elisra/You%20and%20I.mp3",
+    videoSrc: newVisual,
+    videoType: "video/mp4",
   },
 ];
