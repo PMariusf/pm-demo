@@ -34,3 +34,23 @@
 .community-content{position:relative;padding-top:52px;padding-bottom:55px}.community-content h2{font:bold clamp(42px,5vw,68px)/1 Georgia,serif;margin:8px 0 12px}.community-content>p:not(.hero-kicker){color:#b4b4b4;line-height:1.6}.community-form{display:flex;gap:8px;margin-top:20px;max-width:440px}.community-form input{flex:1;min-width:0;background:#0b0d0ed9;border:1px solid #ffffff35;border-radius:7px;color:#fff;padding:11px 13px}.community-form button{border:1px solid #d2a15f;color:#ead0a7;border-radius:7px;padding:10px 22px;background:#0a0c0dd9}.community-messages{max-width:440px;margin-top:10px}.community-messages p{background:#111519dd;border-left:2px solid #c89a5f;padding:8px 12px;font-size:12px}.community-note{position:absolute;right:4%;top:42px;font:italic 28px/1.25 'Brush Script MT','Segoe Script',cursive;color:#d8b888;opacity:.55;transform:rotate(-8deg)}
 @media(max-width:1050px){.ayline-dashboard{grid-template-columns:1fr 1fr}.chat-panel{grid-column:1/-1}.dashboard-card{height:auto;min-height:390px}.hero-side-note{display:none}}
 @media(max-width:720px){.ayline-redesign .ayline-new-hero{height:620px}.ayline-redesign .ayline-new-hero .hero-art{background-size:auto 100%;background-position:65% center}.ayline-dashboard{grid-template-columns:1fr}.chat-panel{grid-column:auto}.music-panel-body{grid-template-columns:1fr;height:auto}.music-feature{height:230px}.dashboard-card{min-height:0;height:auto}.lyrics-panel .ayline-lyrics-card{height:330px}.community-note{display:none}}
+
+
+/* Ayline motion layer */
+.ayline-redesign .header{transition:background .35s ease,box-shadow .35s ease,border-color .35s ease}
+.ayline-redesign .header.header-scrolled{background:#080a0cf2;box-shadow:0 12px 38px #0009;border-bottom-color:#d4a86a2b}
+.ayline-redesign .ayline-new-hero .hero-art{transform:translate3d(0,calc(var(--ayline-scroll,0px) * .11),0) scale(1.035);transition:filter .5s ease}
+.hero-glow{position:absolute;z-index:-1;width:42vw;height:42vw;max-width:620px;max-height:620px;left:46%;top:4%;border-radius:50%;background:radial-gradient(circle,#d89b5140 0%,#b8782820 28%,transparent 68%);filter:blur(28px);pointer-events:none;animation:heroBreath 7s ease-in-out infinite}
+.dust{position:absolute;z-index:1;inset:0;pointer-events:none;opacity:.22;background-image:radial-gradient(circle at 18% 30%,#f5d9b4 0 1px,transparent 1.6px),radial-gradient(circle at 72% 22%,#f5d9b4 0 1px,transparent 1.5px),radial-gradient(circle at 61% 74%,#f5d9b4 0 1px,transparent 1.4px),radial-gradient(circle at 35% 62%,#f5d9b4 0 1px,transparent 1.5px);background-size:190px 190px,260px 260px,220px 220px,310px 310px;animation:dustDrift 18s linear infinite}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .75s ease,transform .75s cubic-bezier(.2,.7,.2,1)}
+.reveal.is-visible{opacity:1;transform:none}
+.dashboard-card{transition:transform .3s ease,border-color .3s ease,box-shadow .3s ease}
+.dashboard-card:hover{transform:translateY(-4px);border-color:#d7aa6b5c;box-shadow:0 18px 50px #0007,0 0 28px #b57c3320}
+.music-feature{transition:border-color .3s ease,box-shadow .3s ease}.music-feature:hover{border-color:#d4a46366;box-shadow:inset 0 0 40px #c98c2d10}
+.big-play{animation:playPulse 2.8s ease-in-out infinite}
+.living-track{transition:background .25s ease,padding-left .25s ease}.living-track:hover{background:linear-gradient(90deg,#d39d5520,transparent);padding-left:6px}
+.living-track:has(audio:playing){border-color:#d9a55f}.community-section{background-attachment:fixed;background-position:center calc(45% + var(--ayline-scroll,0px) * .025)}
+@keyframes heroBreath{0%,100%{opacity:.55;transform:scale(.94)}50%{opacity:.9;transform:scale(1.08)}}
+@keyframes dustDrift{from{background-position:0 0,0 0,0 0,0 0}to{background-position:40px 90px,-60px 120px,80px -80px,-90px 60px}}
+@keyframes playPulse{0%,100%{box-shadow:0 0 0 0 #d5a76d00,0 0 20px #d5a76d12}50%{box-shadow:0 0 0 8px #d5a76d0a,0 0 32px #d5a76d35}}
+@media(prefers-reduced-motion:reduce){.hero-glow,.dust,.big-play{animation:none}.reveal{opacity:1;transform:none}.ayline-redesign .ayline-new-hero .hero-art{transform:none}.community-section{background-attachment:scroll}}
