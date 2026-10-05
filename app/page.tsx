@@ -2,7 +2,8 @@
 
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import Link from "next/link";
-import AylineLyricsCard from "./AylineLyricsCard";\nimport AylineMusicPlayer from "./AylineMusicPlayer";
+import AylineLyricsCard from "./AylineLyricsCard";
+import AylineMusicPlayer from "./AylineMusicPlayer";
 
 const songs = [
   { slug: "far-from-me", title: "Far From Me" },
