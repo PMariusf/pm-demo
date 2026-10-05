@@ -39,10 +39,10 @@
   background-repeat: no-repeat;
 }
 
-.portraitOne { background-image: url('/images/Elisra/Elísra.png'); background-position: center 28%; }
-.portraitTwo { background-image: url('/images/Elisra/Elísra1.png'); background-position: center 32%; }
-.portraitThree { background-image: url('/images/Elisra/Elísra2.png'); background-position: center 28%; }
-.worldPortrait { background-image: url('/images/Elisra/Elísra3.png'); background-position: center 35%; }
+.portraitOne { background-image: url('/images/Elisra/ChatGPT%20Image%20Sep%2028,%202026,%2012_18_48%20AM%20(4).png'); background-position: center 28%; }
+.portraitTwo { background-image: url('/images/Elisra/ChatGPT%20Image%20Sep%2028,%202026,%2012_21_51%20AM%20(1).png'); background-position: center 32%; }
+.portraitThree { background-image: url('/images/Elisra/ChatGPT%20Image%20Sep%2028,%202026,%2012_21_51%20AM%20(2).png'); background-position: center 28%; }
+.worldPortrait { background-image: url('/images/Elisra/ChatGPT%20Image%20Sep%2028,%202026,%2012_21_52%20AM%20(3).png'); background-position: center 35%; }
 
 /* Quiet motion portrait in the World section, below the music player. */
 .motionFrame {
