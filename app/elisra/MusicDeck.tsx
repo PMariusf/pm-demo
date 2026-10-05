@@ -103,7 +103,7 @@ export default function MusicDeck() {
   }
 
   return (
-    <div className={styles.deck} aria-label="Elísra music and lyrics">
+    <div className={styles.deck} aria-label="Elísra music and lyrics" style={{ "--track-accent": selected?.accent ?? "#b6a1ff" } as React.CSSProperties}>
       <div className={styles.deckTop}>
         <span>ELÍSRA / LISTENING ROOM</span>
         <span className={styles.signal}><span aria-hidden="true" /> MUSIC LIBRARY</span>
@@ -114,6 +114,7 @@ export default function MusicDeck() {
             className={`${styles.artwork} ${selected?.videoSrc ? videoStyles.artistArtwork : ""}`}
             role="img"
             aria-label={selected ? `Elísra moving artwork for ${selected.title}` : "Elísra artwork"}
+            style={selected?.artworkSrc ? { backgroundImage: `linear-gradient(0deg, #08070ed9, transparent 58%), url("${selected.artworkSrc}")` } : undefined}
           >
             {selected && videoSrc && !reducedMotion && (
               <video
@@ -126,7 +127,7 @@ export default function MusicDeck() {
                 loop
                 playsInline
                 preload="metadata"
-                poster="/images/Elisra/Elísra.png"
+                poster={selected.artworkSrc ?? "/images/Elisra/Elísra.png"}
                 onError={tryFallbackVideo}
                 aria-hidden="true"
               />
