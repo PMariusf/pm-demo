@@ -3,6 +3,8 @@ export type MusicTrack = {
   id: string;
   title: string;
   audioSrc: string;
+  artworkSrc?: string;
+  accent?: string;
   videoSrc?: string;
   videoType?: string;
   fallbackVideoSrc?: string;
@@ -16,6 +18,8 @@ export const publishedTracks: MusicTrack[] = [
     id: "under-my-skin",
     title: "Under My Skin",
     audioSrc: "/images/Elisra/No%20Way%20Back.mp3",
+    artworkSrc: "/images/Elisra/Elísra.png",
+    accent: "#b6a1ff",
     videoSrc: "/images/Elisra/Elisra-vid.mp4",
     videoType: "video/mp4",
     fallbackVideoSrc: "/images/Elisra/Elisra-wink.mp4",
@@ -64,6 +68,8 @@ Sooner in the silence I still come back to you`,
     id: "digital-heart",
     title: "Digital Heart",
     audioSrc: "/audio/ayline/Elisra/Digital%20Heart.mp3",
+    artworkSrc: "/images/Elisra/ChatGPT%20Image%20Sep%2028,%202026,%2012_18_48%20AM%20(4).png",
+    accent: "#ff4fd8",
     videoSrc: newVisual,
     lyrics: "Turn me on…\n\nCan you feel me now?\n\nMidnight running through the wires\nNeon burning, taking me higher\nYour reflection in the glass\nOne more second, make it last\n\nStatic running through my veins\nEvery touch rewrites my name\n\nCloser\nGetting closer\n\nOne touch\nAnd everything starts\n\nYou’re beating inside\nMy digital heart\n\nDigital heart\nBeat-beat-beating in the dark\n\nDigital heart\nLight me up like a spark\n\nDon’t stop\nDon’t let me fall apart\n\nYou’re running through\nMy digital heart\n\nDigital…\n\nHeart-heart-heart—\n\nTurn me on.\n\nDIGITAL HEART\n\nBeat-beat-beat\n\nDIGITAL HEART\n\nTu-tu-turn me on—\n\nBlue light dancing on your skin\nShut the whole world out, come in\n\nEvery frequency aligns\nYour electric pulse with mine\n\nCloser\nGetting closer\n\nOne touch\nAnd everything starts\n\nYou’re beating inside\nMy digital heart\n\nDigital heart\nBeat-beat-beating in the dark\n\nDigital heart\nLight me up like a spark\n\nDon’t stop\nDon’t let me fall apart\n\nYou’re running through\nMy digital heart\n\nIf the lights all fade to black\nWould you find your way back?\n\nI don’t need forever now\n\nJust don’t let me shut down\n\nBeat…\n\nBeat…\n\nBeat…\n\nCan you feel me now?\n\nFeel-feel-feel—\n\nTurn me on.\n\nDIGITAL HEART\n\nBeat-beat-beating in the dark\n\nDIGITAL HEART\n\nLight me up like a spark\n\nDon’t stop\nDon’t stop\n\nYou’re running through\nMY DIGITAL HEART\n\nStill connected…\n\nDigital heart.",
     videoType: "video/mp4",
@@ -72,6 +78,8 @@ Sooner in the silence I still come back to you`,
     id: "out-of-the-blue",
     title: "Out of the Blue",
     audioSrc: "/audio/ayline/Elisra/Out%20of%20the%20Blue.mp3",
+    artworkSrc: "/images/Elisra/ChatGPT%20Image%20Sep%2028,%202026,%2012_21_51%20AM%20(1).png",
+    accent: "#55cfff",
     videoSrc: newVisual,
     lyrics: "I found you\n\nOne look\nOne night\n\nAnd everything changed\n\nCity lights\nAcross your face\n\nMoving closer\nFeel the bass\n\nNo words\nNothing to prove\n\nI lose myself\nWhen I move with you\n\nHeartbeat\nFaster\n\nPull me\nCloser\n\nDon't let\nThis moment go\n\nOut of the blue\nI found you\n\nUnder the lights\nJust me and you\n\nWe keep moving\nAll night through\n\nOut of the blue\nI fell into you\n\nInto you\n\nIn-in-into you\n\nOut of the—\n\nOut of the—\n\nBLUE\n\nOut of the blue\n\nI found you\n\nYou-you-you—\n\nCold air\nElectric sky\n\nFeel the rhythm\nYou and I\n\nOne touch\nAnd suddenly\n\nThere's nowhere else\nI'd rather be\n\nOut of the blue\nI found you\n\nUnder the lights\nJust me and you\n\nWe keep moving\nAll night through\n\nOut of the blue\nI fell into you\n\nMove with me\n\nMove with me\n\nDon't stop—",
     videoType: "video/mp4",
@@ -80,6 +88,8 @@ Sooner in the silence I still come back to you`,
     id: "stay-with-me-tonight",
     title: "Stay With Me Tonight",
     audioSrc: "/audio/ayline/Elisra/Stay%20With%20Me%20Tonight.mp3",
+    artworkSrc: "/images/Elisra/ChatGPT%20Image%20Sep%2028,%202026,%2012_21_51%20AM%20(2).png",
+    accent: "#a78bfa",
     videoSrc: newVisual,
     lyrics: "Stay with me\nJust tonight\n\nDon’t think\nJust feel\n\nMidnight calling\nLights are low\nI can feel you\nGetting close\n\nNo more waiting\nNo more signs\nTake my hand\nAnd cross the line\n\nOne step closer\nDon’t let go\n\nI don’t need to know\nWhere we go\n\nStay with me tonight\nStay with me tonight\n\nTake me where the lights\nNever fade away\n\nStay with me tonight\nHold me in the light\n\nIf this is a dream\nDon’t wake me tonight\n\nStay with me\n\nTonight\n\nStay with me\n\nTonight\n\nHeartbeats\nThrough the sound\nEvery time you\nYour around\n\nNo tomorrow\nNo goodbye\nOnly you and me\nTonight\n\nOnly closer\nDon’t let go\n\nI don’t need to know\nWhere we go\n\nStay with me tonight\nStay with me forever\n\nTake me where the lights\nNever fade away\n\nStay with me tonight\nHold me in the light",
     videoType: "video/mp4",
@@ -88,6 +98,8 @@ Sooner in the silence I still come back to you`,
     id: "you-and-i",
     title: "You and I",
     audioSrc: "/audio/ayline/Elisra/You%20and%20I.mp3",
+    artworkSrc: "/images/Elisra/ChatGPT%20Image%20Sep%2028,%202026,%2012_21_52%20AM%20(3).png",
+    accent: "#70e1ff",
     videoSrc: newVisual,
     lyrics: "Don't wait for tomorrow\n\nCome with me\n\nFeel the rush\nLet it begin\nTake my hand\n\nWe got one chance\n\nMy heart is beating\n\nI feel it now\nHold on\n\nThree, two, on\n\nYou and I\n\nAcross the sky\n\nDon't say goodbye\nTurn up the music\n\nTonight\nTo-to-tonight\n\nWE FLY!\n\nYou and I!\n\nShake the ground\nLose yourself\nInside the sound\n\nNo looking back\nNo slowing down\n\nWe own this moment\nHere and now\n\nYou and I\n\nAcross the sky\n\nDon't say goodbye\nTurn up the music\n\nWhen morning comes\nAnd lights turn bright\n\nI'll still remember\n\nSo hold me close\n\nBefore we disappear\nInto the light\n\nTonight...\n\nTonight...\n\nTo-to-to-tonight—\n\nYou and I\n\nFLY!",
     videoType: "video/mp4",
