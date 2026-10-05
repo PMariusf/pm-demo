@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
 import Link from "next/link";
 import AylineLyricsCard from "./AylineLyricsCard";
 
@@ -12,7 +12,7 @@ const songs = [
 
 export default function Home() {
   const [draft, setDraft] = useState("");
-  const [messages, setMessages] = useState<string[]>([]);
+  const [messages, setMessages] = useState<string[]>([]);\n  const [scrolled, setScrolled] = useState(false);\n  const rootRef = useRef<HTMLDivElement>(null);\n\n  useEffect(() => {\n    const onScroll = () => {\n      setScrolled(window.scrollY > 24);\n      document.documentElement.style.setProperty("--ayline-scroll", `${Math.min(window.scrollY, 650)}px`);\n    };\n    onScroll();\n    window.addEventListener("scroll", onScroll, { passive: true });\n    const observer = new IntersectionObserver(entries => entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add("is-visible"); }), { threshold: 0.12 });\n    rootRef.current?.querySelectorAll(".reveal").forEach(element => observer.observe(element));\n    return () => { window.removeEventListener("scroll", onScroll); observer.disconnect(); };\n  }, []);
 
   function scrollTo(id: string) {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "center" });
@@ -24,9 +24,9 @@ export default function Home() {
     setDraft("");
   }
 
-  return <div className="ayline-home ayline-redesign">
+  return <div className="ayline-home ayline-redesign" ref={rootRef}>
     <a className="skip-link" href="#main">Skip to content</a>
-    <header className="header">
+    <header className={`header ${scrolled ? "header-scrolled" : ""}`}>
       <div className="shell header-inner">
         <a className="brand" href="#top">PM’s</a>
         <nav className="desktop-nav" aria-label="Main navigation">
@@ -42,7 +42,7 @@ export default function Home() {
     </header>
 
     <main id="main">
-      <section className="hero ayline-new-hero" id="top">
+      <section className="hero ayline-new-hero" id="top"><div className="hero-glow" aria-hidden="true"/><div className="dust" aria-hidden="true"/>
         <div className="hero-art" aria-hidden="true" />
         <div className="shell hero-content">
           <p className="hero-kicker">MUSIC · PEOPLE · WORDS · A BRIGHTER YOU</p>
@@ -57,21 +57,21 @@ export default function Home() {
         <div className="hero-side-note" aria-hidden="true"><em>More<br/>than<br/>Music</em><span>SAME<br/>FEELINGS<br/>DIFFERENT<br/>PEOPLE</span></div>
       </section>
 
-      <section className="shell ayline-dashboard" aria-label="Ayline music, lyrics and community">
-        <article className="dashboard-card music-panel" id="music">
+      <section className="shell ayline-dashboard reveal" aria-label="Ayline music, lyrics and community">
+        <article className="dashboard-card music-panel reveal" id="music">
           <div className="panel-heading"><div><h2>Music</h2><p>Discover the sound of Ayline</p></div><button onClick={() => scrollTo("lyrics")}>See All ›</button></div>
           <div className="music-panel-body">
             <div className="music-feature"><video autoPlay muted loop playsInline preload="metadata" poster="/images/Ayline/Aylina.png"><source src="/videos/Ayline/rock-singer.mp4" type="video/mp4"/></video><span className="big-play">▶</span><strong>Ayline</strong><small>PM’s artist universe</small></div>
-            <div className="song-list">{songs.map(song => <div className="song-row" key={song.slug}><span className="song-thumb"/><span><strong>{song.title}</strong><small>Ayline</small></span><audio controls preload="none" src={`/audio/ayline/${song.slug}.mp3`} aria-label={`Play ${song.title}`}/></div>)}</div>
+            <div className="song-list">{songs.map(song => <div className="song-row living-track" key={song.slug}><span className="song-thumb"/><span><strong>{song.title}</strong><small>Ayline</small></span><audio controls preload="none" src={`/audio/ayline/${song.slug}.mp3`} aria-label={`Play ${song.title}`}/></div>)}</div>
           </div>
         </article>
 
-        <article className="dashboard-card lyrics-panel" id="lyrics">
+        <article className="dashboard-card lyrics-panel reveal" id="lyrics">
           <div className="panel-heading"><div><h2>Lyrics <i>/</i> Read</h2><p>Dive deeper into the words</p></div></div>
           <AylineLyricsCard />
         </article>
 
-        <article className="dashboard-card chat-panel" id="chat">
+        <article className="dashboard-card chat-panel reveal" id="chat">
           <div className="panel-heading"><div><h2>Chat <i>/</i> Discuss</h2><p>Real conversations. Deeper connections.</p></div></div>
           <div className="conversation-list">
             <button onClick={() => scrollTo("community")}><span className="person-avatar"/><span><strong>What does this song mean to you?</strong><small>Share your thoughts</small></span><b>›</b></button>
@@ -81,7 +81,7 @@ export default function Home() {
         </article>
       </section>
 
-      <section className="community-section" id="community">
+      <section className="community-section reveal" id="community">
         <div className="shell community-content">
           <p className="hero-kicker">A COMMUNITY THAT FEELS</p>
           <h2>More Than Music</h2>
