@@ -8,7 +8,7 @@ import MusicDeck from "./MusicDeck";
 
 export const metadata: Metadata = {
   title: "Elísra | PM’s",
-  description: "Listen to Under My Skin and explore Elísra’s cinematic artist world inside PM’s.",
+  description: "Listen to Elísra and explore her cinematic electronic artist world inside PM’s.",
 };
 
 const sounds = [
@@ -55,7 +55,7 @@ export default function ElisraPage() {
           <div className={styles.sectionHead}>
             <p className={styles.sectionIndex}>01 / MUSIC</p>
             <h2 id="music-title">Enter the <em>sound.</em></h2>
-            <p>Listen to Under My Skin with Elísra’s atmospheric video artwork and read the full lyrics in the listening room.</p>
+            <p>Explore Elísra’s growing music library with atmospheric video artwork, custom playback and lyrics where available.</p>
           </div>
           <MusicDeck />
         </section>
@@ -99,6 +99,7 @@ export default function ElisraPage() {
             <div className={`${styles.visualPanel} ${heroStyles.portraitOne}`} role="img" aria-label="Elísra artwork one"><span>01 — ORIGIN</span></div>
             <div className={`${styles.visualPanel} ${heroStyles.portraitTwo}`} role="img" aria-label="Elísra artwork two"><span>02 — FREQUENCY</span></div>
             <div className={`${styles.visualPanel} ${heroStyles.portraitThree}`} role="img" aria-label="Elísra artwork three"><span>03 — AFTERLIGHT</span></div>
+            <div className={`${styles.visualPanel} ${heroStyles.worldPortrait}`} role="img" aria-label="Elísra artwork four"><span>04 — SIGNAL</span></div>
           </div>
         </section>
       </main>
