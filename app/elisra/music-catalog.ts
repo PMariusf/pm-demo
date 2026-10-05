@@ -80,6 +80,7 @@ Sooner in the silence I still come back to you`,
     title: "Stay With Me Tonight",
     audioSrc: "/audio/ayline/Elisra/Stay%20With%20Me%20Tonight.mp3",
     videoSrc: newVisual,
+    lyrics: "Stay with me\nJust tonight\n\nDon’t think\nJust feel\n\nMidnight calling\nLights are low\nI can feel you\nGetting close\n\nNo more waiting\nNo more signs\nTake my hand\nAnd cross the line\n\nOne step closer\nDon’t let go\n\nI don’t need to know\nWhere we go\n\nStay with me tonight\nStay with me tonight\n\nTake me where the lights\nNever fade away\n\nStay with me tonight\nHold me in the light\n\nIf this is a dream\nDon’t wake me tonight\n\nStay with me\n\nTonight\n\nStay with me\n\nTonight\n\nHeartbeats\nThrough the sound\nEvery time you\nYour around\n\nNo tomorrow\nNo goodbye\nOnly you and me\nTonight\n\nOnly closer\nDon’t let go\n\nI don’t need to know\nWhere we go\n\nStay with me tonight\nStay with me forever\n\nTake me where the lights\nNever fade away\n\nStay with me tonight\nHold me in the light",
     videoType: "video/mp4",
   },
   {
