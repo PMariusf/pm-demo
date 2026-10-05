@@ -12,7 +12,21 @@ const songs = [
 
 export default function Home() {
   const [draft, setDraft] = useState("");
-  const [messages, setMessages] = useState<string[]>([]);\n  const [scrolled, setScrolled] = useState(false);\n  const rootRef = useRef<HTMLDivElement>(null);\n\n  useEffect(() => {\n    const onScroll = () => {\n      setScrolled(window.scrollY > 24);\n      document.documentElement.style.setProperty("--ayline-scroll", `${Math.min(window.scrollY, 650)}px`);\n    };\n    onScroll();\n    window.addEventListener("scroll", onScroll, { passive: true });\n    const observer = new IntersectionObserver(entries => entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add("is-visible"); }), { threshold: 0.12 });\n    rootRef.current?.querySelectorAll(".reveal").forEach(element => observer.observe(element));\n    return () => { window.removeEventListener("scroll", onScroll); observer.disconnect(); };\n  }, []);
+  const [messages, setMessages] = useState<string[]>([]);
+  const [scrolled, setScrolled] = useState(false);
+  const rootRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const onScroll = () => {
+      setScrolled(window.scrollY > 24);
+      document.documentElement.style.setProperty("--ayline-scroll", `${Math.min(window.scrollY, 650)}px`);
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    const observer = new IntersectionObserver(entries => entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add("is-visible"); }), { threshold: 0.12 });
+    rootRef.current?.querySelectorAll(".reveal").forEach(element => observer.observe(element));
+    return () => { window.removeEventListener("scroll", onScroll); observer.disconnect(); };
+  }, []);
 
   function scrollTo(id: string) {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "center" });
