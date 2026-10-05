@@ -54,3 +54,17 @@
 @keyframes dustDrift{from{background-position:0 0,0 0,0 0,0 0}to{background-position:40px 90px,-60px 120px,80px -80px,-90px 60px}}
 @keyframes playPulse{0%,100%{box-shadow:0 0 0 0 #d5a76d00,0 0 20px #d5a76d12}50%{box-shadow:0 0 0 8px #d5a76d0a,0 0 32px #d5a76d35}}
 @media(prefers-reduced-motion:reduce){.hero-glow,.dust,.big-play{animation:none}.reveal{opacity:1;transform:none}.ayline-redesign .ayline-new-hero .hero-art{transform:none}.community-section{background-attachment:scroll}}
+
+
+/* Custom Ayline music player */
+.music-panel{height:390px}.music-panel .panel-heading{margin-bottom:10px}
+.custom-player{display:grid;grid-template-columns:1.05fr .95fr;gap:14px;height:300px}
+.now-playing{position:relative;overflow:hidden;border:1px solid #ffffff1d;border-radius:10px;padding:18px;background:linear-gradient(0deg,#090b0df5,#090b0d62),url('/images/Ayline/Aylina.png') center 32%/cover;display:flex;flex-direction:column;justify-content:flex-end;box-shadow:inset 0 -80px 80px #050607c7}
+.now-label{font-size:9px;letter-spacing:.28em;color:#d9ac70;margin-bottom:5px}.now-playing>strong{font:600 20px/1.1 Georgia,serif}.now-playing>small{font-size:10px;color:#aaa;margin-top:3px}
+.equalizer{height:34px;display:flex;align-items:end;gap:3px;margin:10px 0 7px}.equalizer i{display:block;flex:1;max-width:4px;height:18%;border-radius:4px;background:#d6a668;opacity:.55}.equalizer.active i{animation:eq .72s ease-in-out infinite alternate}.equalizer.active i:nth-child(3n){animation-duration:.46s}.equalizer.active i:nth-child(4n){animation-duration:.9s}.equalizer.active i:nth-child(5n){animation-delay:.2s}
+.player-controls{display:flex;justify-content:center;align-items:center;gap:15px}.player-controls button{border:0;background:none;color:#eee;font-size:25px}.player-controls .player-main{width:43px;height:43px;border:1px solid #ddb274;border-radius:50%;font-size:15px;background:#0b0c0dcc;box-shadow:0 0 25px #c68d3c29}
+.progress-wrap{display:grid;grid-template-columns:30px 1fr 30px;gap:7px;align-items:center;margin-top:9px;font-size:9px;color:#aaa}.progress-wrap input{width:100%;accent-color:#d4a15e;height:3px}
+.player-tracks{display:flex;flex-direction:column;justify-content:center}.player-tracks button{display:grid;grid-template-columns:34px 1fr;gap:9px;align-items:center;text-align:left;border:0;border-bottom:1px solid #ffffff14;background:transparent;color:#eee;padding:13px 6px;transition:.25s}.player-tracks button:hover,.player-tracks button.active{background:linear-gradient(90deg,#d39d551b,transparent);color:#e5bc82}.player-tracks button.active{border-left:2px solid #d5a15d;padding-left:9px}.player-tracks button>span:last-child{display:grid;gap:3px}.player-tracks strong{font-size:11px}.player-tracks small{font-size:9px;color:#888}.mini-play{width:31px;height:31px;border-radius:50%;border:1px solid #ffffff2b;display:grid;place-items:center;font-size:10px}
+@keyframes eq{from{height:14%}to{height:90%}}
+@media(max-width:720px){.custom-player{grid-template-columns:1fr;height:auto}.now-playing{min-height:270px}.music-panel{height:auto}}
+@media(prefers-reduced-motion:reduce){.equalizer.active i{animation:none;height:45%}}
