@@ -70,7 +70,7 @@ export default function ElisraPage() {
             {sounds.map((sound) => (
               <article className={styles.soundCard} key={sound.name}>
                 <div className={styles.soundTop}><span>{sound.number} / SIGNAL</span><span aria-hidden="true">↗</span></div>
-                <div className={styles.barField} aria-hidden="true">{Array.from({ length: 24 }, (_, i) => <span key={i} style={{ height: `${12 + ((i * 17 + Number(sound.number) * 13) % 56)}%` }} />)}</div>
+                <div className={styles.barField} aria-hidden="true">{Array.from({ length: 24 }, (_, i) => <span key={i} style={{ height: `${12 + ((i * 17 + Number(sound.number) * 13) % 56)}%`, animationDelay: `${-(i * 0.075 + Number(sound.number) * 0.11)}s, ${-(i * 0.13)}s`, animationDuration: `${0.72 + (i % 5) * 0.09}s, ${4.2 + (i % 4) * 0.35}s` }} />)}</div>
                 <h3>{sound.name}</h3>
                 <p>{sound.detail}</p>
               </article>
