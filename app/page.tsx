@@ -60,7 +60,7 @@ export default function Home() {
       <section className="hero ayline-new-hero" id="top"><div className="hero-glow" aria-hidden="true"/><div className="dust" aria-hidden="true"/>
         <div className="hero-art" aria-hidden="true" />
         <video className="ayline-hero-video" autoPlay muted loop playsInline preload="metadata" aria-hidden="true">
-          <source src="/Ayline/Ayline-video.mp4" type="video/mp4" />
+          <source src="/images/Ayline/Ayline-video.mp4" type="video/mp4" />
         </video>
         <div className="shell hero-content">
           <p className="hero-kicker">MUSIC · PEOPLE · WORDS · A BRIGHTER YOU</p>
