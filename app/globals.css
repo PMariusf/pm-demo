@@ -79,7 +79,7 @@
   width:106%;
   height:106%;
   object-fit:cover;
-  object-position:center 38%;
+  object-position:center 24%;
   opacity:.46;
   filter:saturate(.82) contrast(1.05) brightness(.78);
   pointer-events:none;
