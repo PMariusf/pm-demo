@@ -92,3 +92,59 @@
 @media(prefers-reduced-motion:reduce){
   .ayline-hero-video{display:none;transform:none}
 }
+
+
+/* Ayline community cinematic slideshow */
+.ayline-redesign .community-section{
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  min-height:430px;
+  background:#07090b;
+  background-attachment:scroll;
+}
+.community-slideshow,.community-shade{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+}
+.community-slideshow{z-index:-3;background:#07090b}
+.community-slide{
+  position:absolute;
+  inset:-4%;
+  opacity:0;
+  background-size:cover;
+  background-repeat:no-repeat;
+  background-position:center;
+  transform:scale(1.035);
+  animation:aylineGallery 30s ease-in-out infinite;
+  will-change:opacity,transform;
+}
+.slide-dusk{background-image:url('/images/Ayline/Ayline-dusk.png');background-position:center 42%;animation-delay:0s}
+.slide-dusk-sits{background-image:url('/images/Ayline/Ayline-dusk-sitts.png');background-position:center 48%;animation-delay:6s}
+.slide-stars{background-image:url('/images/Ayline/Ayline-looking-stars.png');background-position:center 42%;animation-delay:12s}
+.slide-side{background-image:url('/images/Ayline/Ayline-side.jpeg');background-position:center 35%;animation-delay:18s}
+.slide-singing{background-image:url('/images/Ayline/Ayline-singing.png');background-position:center 36%;animation-delay:24s}
+.community-shade{
+  z-index:-2;
+  background:
+    linear-gradient(90deg,#07090bf5 0%,#07090bcf 31%,#07090b57 58%,#07090b99 100%),
+    linear-gradient(0deg,#07090bdc 0%,transparent 42%,#07090b69 100%);
+}
+.ayline-redesign .community-content{z-index:1;padding-top:78px;padding-bottom:78px}
+@keyframes aylineGallery{
+  0%{opacity:0;transform:scale(1.035)}
+  5%{opacity:.86}
+  17%{opacity:.86;transform:scale(1.085)}
+  22%{opacity:0;transform:scale(1.1)}
+  100%{opacity:0;transform:scale(1.1)}
+}
+@media(max-width:720px){
+  .ayline-redesign .community-section{min-height:500px}
+  .community-slide{background-position:62% center}
+  .community-shade{background:linear-gradient(0deg,#07090bf4 0%,#07090bba 52%,#07090b72 100%)}
+}
+@media(prefers-reduced-motion:reduce){
+  .community-slide{animation:none;opacity:0;transform:none}
+  .community-slide:first-child{opacity:.78}
+}
