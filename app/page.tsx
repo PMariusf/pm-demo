@@ -100,6 +100,14 @@ export default function Home() {
       </section>
 
       <section className="community-section reveal" id="community">
+        <div className="community-slideshow" aria-hidden="true">
+          <div className="community-slide slide-dusk" />
+          <div className="community-slide slide-dusk-sits" />
+          <div className="community-slide slide-stars" />
+          <div className="community-slide slide-side" />
+          <div className="community-slide slide-singing" />
+        </div>
+        <div className="community-shade" aria-hidden="true" />
         <div className="shell community-content">
           <p className="hero-kicker">A COMMUNITY THAT FEELS</p>
           <h2>More Than Music</h2>
