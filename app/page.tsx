@@ -1,9 +1,10 @@
 "use client";
 
-import { useEffect, useRef, useState, type FormEvent } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import AylineLyricsCard from "./AylineLyricsCard";
 import AylineMusicPlayer from "./AylineMusicPlayer";
+import CommunityChat from "./CommunityChat";
 
 const songs = [
   { slug: "far-from-me", title: "Far From Me" },
@@ -12,8 +13,6 @@ const songs = [
 ] as const;
 
 export default function Home() {
-  const [draft, setDraft] = useState("");
-  const [messages, setMessages] = useState<string[]>([]);
   const [scrolled, setScrolled] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
 
@@ -32,12 +31,6 @@ export default function Home() {
   function scrollTo(id: string) {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "center" });
   }
-  function send(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    if (!draft.trim()) return;
-    setMessages(previous => [...previous, draft.trim()]);
-    setDraft("");
-  }
 
   return <div className="ayline-home ayline-redesign" ref={rootRef}>
     <a className="skip-link" href="#main">Skip to content</a>
@@ -49,7 +42,7 @@ export default function Home() {
           <button onClick={() => scrollTo("lyrics")}>Lyrics</button>
           <button onClick={() => scrollTo("community")}>Feel</button>
           <button onClick={() => scrollTo("lyrics")}>Read</button>
-          <button onClick={() => scrollTo("chat")}>Chat</button>
+          <button onClick={() => scrollTo("community")}>Chat</button>
           <button onClick={() => scrollTo("community")}>Discuss</button>
           <Link className="elisra-link" href="/elisra">Elísra ↗</Link>
         </nav>
@@ -69,7 +62,7 @@ export default function Home() {
           <p className="hero-description">Music for the quiet moments, the loud feelings<br />and everything in between.</p>
           <div className="hero-actions">
             <button className="button gold-button" onClick={() => scrollTo("music")}>▷ <strong>Music</strong></button>
-            <button className="button outline-button" onClick={() => scrollTo("chat")}>◯ <strong>Chat</strong></button>
+            <button className="button outline-button" onClick={() => scrollTo("community")}>◯ <strong>Chat</strong></button>
           </div>
         </div>
         <div className="hero-side-note" aria-hidden="true"><em>More<br/>than<br/>Music</em><span>SAME<br/>FEELINGS<br/>DIFFERENT<br/>PEOPLE</span></div>
@@ -112,11 +105,7 @@ export default function Home() {
           <p className="hero-kicker">A COMMUNITY THAT FEELS</p>
           <h2>More Than Music</h2>
           <p>Share your thoughts. Find your people.<br/>Feel a little less alone.</p>
-          <form className="community-form" onSubmit={send}>
-            <input value={draft} onChange={e => setDraft(e.target.value)} placeholder="Write something…" aria-label="Community message"/>
-            <button type="submit">Discuss</button>
-          </form>
-          {messages.length > 0 && <div className="community-messages">{messages.map((message,index)=><p key={index}>{message}</p>)}</div>}
+          <CommunityChat />
           <span className="community-note" aria-hidden="true">Same<br/>Songs<br/>Brighter<br/>People</span>
         </div>
       </section>
