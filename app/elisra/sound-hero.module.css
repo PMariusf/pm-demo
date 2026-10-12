@@ -1,0 +1,78 @@
+.soundHero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  width: 100%;
+  max-width: none;
+  padding: 140px max(36px, calc((100% - 1440px) / 2));
+  margin: 0;
+  border-top: 1px solid #a496d229;
+  border-bottom: 1px solid #a496d229;
+  background: #08070e;
+}
+
+.videoWrap {
+  position: absolute;
+  inset: 0;
+  z-index: -3;
+  overflow: hidden;
+}
+
+.video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 42%;
+  filter: saturate(.9) contrast(1.06) brightness(.58);
+  transform: scale(1.02);
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background:
+    linear-gradient(90deg, rgba(8,7,14,.92) 0%, rgba(8,7,14,.70) 38%, rgba(8,7,14,.32) 70%, rgba(8,7,14,.58) 100%),
+    linear-gradient(180deg, rgba(8,7,14,.30) 0%, rgba(8,7,14,.08) 48%, rgba(8,7,14,.78) 100%);
+}
+
+.glow {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 75% 30%, rgba(255, 73, 196, .16), transparent 34%),
+    radial-gradient(circle at 20% 75%, rgba(99, 230, 255, .10), transparent 34%);
+}
+
+.inner {
+  position: relative;
+  z-index: 1;
+}
+
+.inner :global(.sectionIndex) {
+  text-shadow: 0 2px 20px rgba(0,0,0,.75);
+}
+
+@media (max-width: 650px) {
+  .soundHero {
+    padding: 90px 19px;
+  }
+
+  .video {
+    object-position: 58% center;
+  }
+
+  .overlay {
+    background:
+      linear-gradient(180deg, rgba(8,7,14,.48) 0%, rgba(8,7,14,.62) 45%, rgba(8,7,14,.88) 100%),
+      linear-gradient(90deg, rgba(8,7,14,.72), rgba(8,7,14,.35));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .video {
+    display: none;
+  }
+}
