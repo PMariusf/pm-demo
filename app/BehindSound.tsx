@@ -1,4 +1,5 @@
 import AylineCarousel from "./AylineCarousel";
+import ElisaCarousel from "./ElisaCarousel";
 
 type BehindSoundProps = {
   artist: "Ayline" | "Elísa";
@@ -57,6 +58,12 @@ export default function BehindSound({
           {artist === "Ayline" && (
             <div className="mt-8 max-w-[500px]">
               <AylineCarousel />
+            </div>
+          )}
+
+          {artist === "Elísa" && (
+            <div className="mt-8 max-w-[500px]">
+              <ElisaCarousel />
             </div>
           )}
         </div>
