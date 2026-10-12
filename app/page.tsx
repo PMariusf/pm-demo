@@ -7,6 +7,7 @@ import AylineLyricsCard from "./AylineLyricsCard";
 import AylineMusicPlayer from "./AylineMusicPlayer";
 import BehindSound from "./BehindSound";
 import CommunityChat from "./CommunityChat";
+import FooterContact from "./FooterContact";
 
 const songs = [
   { slug: "far-from-me", title: "Far From Me" },
@@ -163,6 +164,9 @@ export default function Home() {
         </Link>
         <span>Live it, Feel it Be It</span>
         <Link className="footer-artist-link" href="/elisra">Explore Elísa ↗</Link>
+      </div>
+      <div className="shell" style={{ paddingTop: 16, paddingBottom: 18 }}>
+        <FooterContact />
       </div>
     </footer>
   </div>;
