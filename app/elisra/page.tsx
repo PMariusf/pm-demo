@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import BehindSound from "../BehindSound";
 import styles from "./page.module.css";
@@ -42,7 +43,17 @@ export default function ElisraPage() {
           <div className={heroStyles.tint} aria-hidden="true" />
           <div className={`${styles.heroInner} ${heroStyles.content}`}>
             <p className={styles.kicker}><span className={styles.statusDot} /> PM’s / ARTIST UNIVERSE</p>
-            <h1 id="elisa-title" className={styles.heroTitle}>Elísa<span aria-hidden="true">.</span></h1>
+            <h1 id="elisa-title" className="sr-only">Elísa</h1>
+            <div style={{ width: "min(660px, 82vw)", margin: "-34px 0 -44px -42px" }}>
+              <Image
+                src="/images/elisa-logo.png"
+                alt="Elísa"
+                width={1536}
+                height={1024}
+                priority
+                style={{ width: "100%", height: "auto", objectFit: "contain" }}
+              />
+            </div>
             <p className={styles.tagline}>Ancient soul. <em>Future sound.</em></p>
             <p className={styles.intro}>A concept world of driving rhythms, luminous textures and cinematic atmosphere.</p>
             <div className={styles.actions}>
@@ -124,7 +135,9 @@ export default function ElisraPage() {
       </main>
 
       <footer className={styles.footer}>
-        <Link href="/" className={styles.pmBrand}>PM’s</Link>
+        <Link href="/elisra" aria-label="Elísa home" style={{ width: 164, display: "block", flex: "0 0 auto" }}>
+          <Image src="/images/elisa-logo.png" alt="Elísa" width={1536} height={1024} style={{ width: "100%", height: "auto" }} />
+        </Link>
         <span>ELÍSA / CONCEPT DEMO</span>
         <a href="#top">BACK TO TOP ↑</a>
       </footer>
