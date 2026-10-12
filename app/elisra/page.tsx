@@ -23,12 +23,12 @@ const sounds = [
 
 export default function ElisraPage() {
   return (
-    <div className={styles.page} id="top">
+    <div className={`${styles.page} elisa-page`} id="top">
       <a className={styles.skip} href="#content"><T en="Skip to content" no="Hopp til innhold" /></a>
-      <header className={styles.header}>
-        <div className={styles.headerInner}>
+      <header className={`${styles.header} elisa-header`}>
+        <div className={`${styles.headerInner} elisa-header-inner`}>
           <Link href="/" className={styles.pmBrand} aria-label="PM’s home">PM’s <span>/ ARTISTS</span></Link>
-          <nav className={styles.nav} aria-label="Elísa page navigation">
+          <nav className={`${styles.nav} elisa-nav`} aria-label="Elísa page navigation">
             <a href="#music"><T en="Music" no="Musikk" /></a>
             <a href="#story"><T en="Story" no="Historie" /></a>
             <a href="#world"><T en="World" no="Verden" /></a>
@@ -47,7 +47,7 @@ export default function ElisraPage() {
           <div className={`${styles.heroInner} ${heroStyles.content}`}>
             <p className={styles.kicker}><span className={styles.statusDot} /> PM’s / ARTIST UNIVERSE</p>
             <h1 id="elisa-title" className="sr-only">Elísa</h1>
-            <div className={styles.heroLogoWrap}>
+            <div className="elisa-hero-logo">
               <Image src="/images/elisa-logo.png" alt="Elísa" width={1536} height={1024} priority style={{ width: "100%", height: "auto", objectFit: "contain" }} />
             </div>
             <p className={styles.tagline}><T en={<>Ancient soul. <em>Future sound.</em></>} no={<>Gammel sjel. <em>Fremtidens lyd.</em></>} /></p>
@@ -75,10 +75,7 @@ export default function ElisraPage() {
             eyebrow={<T en="Behind the Sound · 02" no="Bak lyden · 02" />}
             title={<T en="Born from the beat." no="Født fra rytmen." />}
             intro={<T en="The pulse comes first. The emotion stays underneath it." no="Pulsen kommer først. Følelsen ligger under hele veien." />}
-            body={<T
-              en="Elísa grew from a different kind of energy. The music often begins with rhythm — a bassline, a pulse, a hook or the feeling of being out at night while the world moves around you. Early-2000s trance, techno, happy hardcore and darker electronic textures shape the sound. Heavy drops, deep bass and clear beats bring the momentum, while the vocal keeps an emotional core running through it all."
-              no="Elísa vokste frem fra en annen type energi. Musikken begynner ofte med rytmen — en basslinje, en puls, en hook eller følelsen av å være ute om natten mens verden beveger seg rundt deg. Trance fra tidlig 2000-tall, techno, happy hardcore og mørkere elektroniske teksturer former lydbildet. Tunge drops, dyp bass og tydelige beats skaper fremdriften, mens vokalen beholder en emosjonell kjerne gjennom det hele."
-            />}
+            body={<T en="Elísa grew from a different kind of energy. The music often begins with rhythm — a bassline, a pulse, a hook or the feeling of being out at night while the world moves around you. Early-2000s trance, techno, happy hardcore and darker electronic textures shape the sound. Heavy drops, deep bass and clear beats bring the momentum, while the vocal keeps an emotional core running through it all." no="Elísa vokste frem fra en annen type energi. Musikken begynner ofte med rytmen — en basslinje, en puls, en hook eller følelsen av å være ute om natten mens verden beveger seg rundt deg. Trance fra tidlig 2000-tall, techno, happy hardcore og mørkere elektroniske teksturer former lydbildet. Tunge drops, dyp bass og tydelige beats skaper fremdriften, mens vokalen beholder en emosjonell kjerne gjennom det hele." />}
             details={[
               { key: "idea", label: <T en="First idea" no="Første idé" />, value: <T en="Beat and momentum" no="Beat og fremdrift" /> },
               { key: "sound", label: <T en="Sound" no="Lyd" />, value: <T en="Trance · techno · happy hardcore" no="Trance · techno · happy hardcore" /> },
@@ -118,8 +115,8 @@ export default function ElisraPage() {
           <p className={styles.disclaimer}><T en="Sound directions are a visual concept, not additional playable tracks." no="Lydretningene er en visuell del av konseptet, ikke flere avspillbare spor." /></p>
         </section>
 
-        <section id="visuals" aria-labelledby="visuals-title" className={styles.visualOutro}>
-          <div className={styles.visualOutroInner}>
+        <section id="visuals" aria-labelledby="visuals-title" className="elisa-visual-outro">
+          <div className="elisa-visual-outro-inner">
             <p className={styles.sectionIndex}>THE VISUAL WORLD</p>
             <h2 id="visuals-title"><T en={<>A world in <em>motion.</em></>} no={<>En verden i <em>bevegelse.</em></>} /></h2>
             <p><T en="Elísa’s portraits, presented as a first look at the visual world." no="Elísas portretter, presentert som et første innblikk i den visuelle verdenen." /></p>
