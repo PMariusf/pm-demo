@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import BehindSound from "../BehindSound";
+import FooterContact from "../FooterContact";
 import styles from "./page.module.css";
 import heroStyles from "./hero.module.css";
 import ElisraParallax from "./ElisraParallax";
@@ -140,12 +141,15 @@ export default function ElisraPage() {
         </section>
       </main>
 
-      <footer className={styles.footer}>
+      <footer className={styles.footer} style={{ flexWrap: "wrap", rowGap: 16 }}>
         <Link href="/elisra" aria-label="Elísa home" style={{ width: 164, display: "block", flex: "0 0 auto" }}>
           <Image src="/images/elisa-logo.png" alt="Elísa" width={1536} height={1024} style={{ width: "100%", height: "auto" }} />
         </Link>
         <span>ELÍSA / CONCEPT DEMO</span>
         <a href="#top">BACK TO TOP ↑</a>
+        <div style={{ flexBasis: "100%", display: "flex", justifyContent: "center", paddingTop: 8 }}>
+          <FooterContact />
+        </div>
       </footer>
     </div>
   );
