@@ -37,8 +37,8 @@ export default function BehindSound({
         aria-hidden="true"
       />
 
-      <div className="relative mx-auto grid w-[min(100%-38px,1420px)] gap-10 py-20 lg:grid-cols-[.82fr_1.18fr] lg:gap-20 lg:py-28">
-        <div className="self-start lg:sticky lg:top-28">
+      <div className="relative mx-auto grid w-[min(100%-38px,1420px)] items-start gap-10 py-20 lg:grid-cols-[minmax(0,.82fr)_minmax(0,1.18fr)] lg:gap-20 lg:py-28">
+        <div className="min-w-0 self-start">
           <p
             className={`mb-4 text-[11px] uppercase tracking-[.34em] ${
               electric ? "text-cyan-200/65" : "text-[#d9b77f]"
@@ -53,10 +53,15 @@ export default function BehindSound({
             {title}
           </h2>
           <p className="mt-6 max-w-md text-base leading-7 text-white/55">{intro}</p>
-          {artist === "Ayline" && <AylineCarousel />}
+
+          {artist === "Ayline" && (
+            <div className="mt-8 max-w-[500px]">
+              <AylineCarousel />
+            </div>
+          )}
         </div>
 
-        <div>
+        <div className="min-w-0">
           <div className="mb-8 flex items-center gap-4">
             <span
               className={`h-px w-14 ${electric ? "bg-cyan-200/50" : "bg-[#d9b77f]/60"}`}
