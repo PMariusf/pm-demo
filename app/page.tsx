@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import AylineLyricsCard from "./AylineLyricsCard";
 import AylineMusicPlayer from "./AylineMusicPlayer";
@@ -12,6 +13,13 @@ const songs = [
   { slug: "set-the-dark-on-fire", title: "Set the Dark on Fire" },
   { slug: "one-more-time", title: "One More Time" },
 ] as const;
+
+const logoCropStyle = {
+  width: "100%",
+  height: "100%",
+  objectFit: "cover" as const,
+  objectPosition: "center",
+};
 
 export default function Home() {
   const [scrolled, setScrolled] = useState(false);
@@ -37,7 +45,21 @@ export default function Home() {
     <a className="skip-link" href="#main">Skip to content</a>
     <header className={`header ${scrolled ? "header-scrolled" : ""}`}>
       <div className="shell header-inner">
-        <a className="brand" href="#top">PM’s</a>
+        <a
+          className="brand"
+          href="#top"
+          aria-label="PM’s home"
+          style={{ width: 138, height: 54, overflow: "hidden", display: "block", flex: "0 0 auto" }}
+        >
+          <Image
+            src="/images/pm-logo.png"
+            alt="PM’s"
+            width={300}
+            height={300}
+            priority
+            style={logoCropStyle}
+          />
+        </a>
         <nav className="desktop-nav" aria-label="Main navigation">
           <button onClick={() => scrollTo("music")}>Music</button>
           <button onClick={() => scrollTo("lyrics")}>Lyrics</button>
@@ -45,7 +67,7 @@ export default function Home() {
           <button onClick={() => scrollTo("lyrics")}>Read</button>
           <button onClick={() => scrollTo("community")}>Chat</button>
           <button onClick={() => scrollTo("community")}>Discuss</button>
-          <Link className="elisra-link" href="/elisra">Elísra ↗</Link>
+          <Link className="elisra-link" href="/elisra">Elísa ↗</Link>
         </nav>
       </div>
     </header>
@@ -125,6 +147,18 @@ export default function Home() {
         </div>
       </section>
     </main>
-    <footer className="footer"><div className="shell footer-inner"><span>PM’s · Ayline</span><span>Live it, Feel it Be It</span><Link className="footer-artist-link" href="/elisra">Explore Elísra ↗</Link></div></footer>
+    <footer className="footer">
+      <div className="shell footer-inner">
+        <Link
+          href="/"
+          aria-label="PM’s home"
+          style={{ width: 118, height: 46, overflow: "hidden", display: "block", flex: "0 0 auto" }}
+        >
+          <Image src="/images/pm-logo.png" alt="PM’s" width={300} height={300} style={logoCropStyle} />
+        </Link>
+        <span>Live it, Feel it Be It</span>
+        <Link className="footer-artist-link" href="/elisra">Explore Elísa ↗</Link>
+      </div>
+    </footer>
   </div>;
 }
