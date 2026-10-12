@@ -80,74 +80,92 @@ export default function AylineCarousel() {
     >
       <style>{`
         @keyframes ayline-cinematic-drift {
-          0% { transform: scale(1.015) translate3d(0, 0, 0); }
-          100% { transform: scale(1.085) translate3d(-0.7%, -0.35%, 0); }
+          0% { transform: scale(1.018) translate3d(0, 0, 0); }
+          100% { transform: scale(1.09) translate3d(-0.8%, -0.45%, 0); }
         }
         @keyframes ayline-progress {
           from { transform: scaleX(0); }
           to { transform: scaleX(1); }
         }
+        @keyframes ayline-grain {
+          0%,100% { transform: translate(0,0); }
+          25% { transform: translate(-1%,1%); }
+          50% { transform: translate(1%,-1%); }
+          75% { transform: translate(.5%,1%); }
+        }
         @media (prefers-reduced-motion: reduce) {
           .ayline-drift,
-          .ayline-progress { animation: none !important; }
+          .ayline-progress,
+          .ayline-grain { animation: none !important; }
         }
       `}</style>
 
-      <div className="mb-3 flex items-center justify-between gap-3">
-        <div className="flex items-center gap-2.5">
-          <span className={`h-1.5 w-1.5 rounded-full ${paused ? "bg-white/30" : "bg-[#d9b77f]"}`} aria-hidden="true" />
-          <p className="m-0 text-[10px] uppercase tracking-[0.3em] text-[#d9b77f]/75">Ayline · Visual moments</p>
+      <div className="mb-3 flex items-end justify-between gap-3">
+        <div>
+          <p className="m-0 font-serif text-[11px] uppercase tracking-[0.28em] text-[#e2bd83]">Ayline / From the words</p>
+          <p className="mt-1 text-[9px] uppercase tracking-[0.22em] text-white/28">Cinematic rock portraits</p>
         </div>
-        <span className="text-[10px] tracking-[0.2em] text-white/35">
+        <span className="font-mono text-[10px] tracking-[0.18em] text-[#e2bd83]/55">
           {String(active + 1).padStart(2, "0")} / {String(images.length).padStart(2, "0")}
         </span>
       </div>
 
-      <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-black shadow-2xl shadow-black/40">
-        <div className="relative aspect-[4/3] w-full overflow-hidden">
-          <Image
-            key={`${images[active]}-${restartKey}`}
-            src={images[active]}
-            alt={`Ayline visual ${active + 1}`}
-            fill
-            sizes="(max-width: 1024px) 100vw, 520px"
-            className="ayline-drift object-cover"
-            style={{ animation: paused ? "none" : `ayline-cinematic-drift ${AUTOPLAY_MS}ms ease-out both` }}
-          />
+      <div className="relative rounded-[18px] border border-[#d8ad72]/25 bg-[#120e0b] p-[5px] shadow-[0_18px_55px_rgba(0,0,0,.48),0_0_0_1px_rgba(216,173,114,.05),0_0_35px_rgba(128,69,28,.12)]">
+        <div className="relative overflow-hidden rounded-[14px] border border-white/8 bg-black">
+          <div className="relative aspect-[4/3] w-full overflow-hidden">
+            <Image
+              key={`${images[active]}-${restartKey}`}
+              src={images[active]}
+              alt={`Ayline visual ${active + 1}`}
+              fill
+              sizes="(max-width: 1024px) 100vw, 520px"
+              className="ayline-drift object-cover"
+              style={{ animation: paused ? "none" : `ayline-cinematic-drift ${AUTOPLAY_MS}ms ease-out both` }}
+            />
 
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-black/10" />
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-[#d8ad72]/10 to-transparent" />
+            <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_top,rgba(8,4,2,.66),transparent_48%),radial-gradient(circle_at_15%_15%,rgba(181,84,32,.18),transparent_38%),radial-gradient(circle_at_85%_82%,rgba(216,173,114,.11),transparent_32%)]" />
+            <div className="pointer-events-none absolute inset-0 mix-blend-soft-light opacity-25 [background-image:repeating-linear-gradient(0deg,rgba(255,255,255,.035)_0,rgba(255,255,255,.035)_1px,transparent_1px,transparent_3px)]" />
+            <div className="ayline-grain pointer-events-none absolute -inset-6 opacity-[.08] [background-image:radial-gradient(circle,rgba(255,255,255,.55)_0.5px,transparent_0.7px)] [background-size:5px_5px]" style={{ animation: "ayline-grain .8s steps(2,end) infinite" }} />
 
-          <button
-            type="button"
-            onClick={previous}
-            aria-label="Previous Ayline image"
-            className="absolute left-3 top-1/2 grid h-9 w-9 -translate-y-1/2 place-items-center rounded-full border border-white/20 bg-black/45 text-lg text-white backdrop-blur-md transition hover:scale-105 hover:border-[#d8ad72]/70 hover:text-[#e4bd83]"
-          >
-            ‹
-          </button>
-          <button
-            type="button"
-            onClick={next}
-            aria-label="Next Ayline image"
-            className="absolute right-3 top-1/2 grid h-9 w-9 -translate-y-1/2 place-items-center rounded-full border border-white/20 bg-black/45 text-lg text-white backdrop-blur-md transition hover:scale-105 hover:border-[#d8ad72]/70 hover:text-[#e4bd83]"
-          >
-            ›
-          </button>
+            <div className="pointer-events-none absolute left-4 top-4 rounded-full border border-[#d8ad72]/25 bg-black/40 px-3 py-1.5 backdrop-blur-md">
+              <span className="text-[9px] uppercase tracking-[0.22em] text-[#e5c08b]/85">Rock frame · {String(active + 1).padStart(2, "0")}</span>
+            </div>
 
-          <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-[2px] bg-white/10">
-            {!paused && (
-              <span
-                key={`progress-${active}-${restartKey}`}
-                className="ayline-progress block h-full origin-left bg-[#d8ad72]/85"
-                style={{ animation: `ayline-progress ${AUTOPLAY_MS}ms linear forwards` }}
-              />
-            )}
+            <div className="pointer-events-none absolute bottom-5 left-5 right-16">
+              <p className="m-0 font-serif text-[16px] italic tracking-wide text-white/78">Words become sound.</p>
+            </div>
+
+            <button
+              type="button"
+              onClick={previous}
+              aria-label="Previous Ayline image"
+              className="absolute left-3 top-1/2 grid h-10 w-10 -translate-y-1/2 place-items-center rounded-sm border border-[#d8ad72]/35 bg-[#0b0806]/75 text-xl text-[#e5c08b] backdrop-blur-md transition hover:-translate-x-0.5 hover:border-[#e5c08b]/75 hover:bg-[#1a110b]/90"
+            >
+              ‹
+            </button>
+            <button
+              type="button"
+              onClick={next}
+              aria-label="Next Ayline image"
+              className="absolute right-3 top-1/2 grid h-10 w-10 -translate-y-1/2 place-items-center rounded-sm border border-[#d8ad72]/35 bg-[#0b0806]/75 text-xl text-[#e5c08b] backdrop-blur-md transition hover:translate-x-0.5 hover:border-[#e5c08b]/75 hover:bg-[#1a110b]/90"
+            >
+              ›
+            </button>
+
+            <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-[3px] bg-black/35">
+              {!paused && (
+                <span
+                  key={`progress-${active}-${restartKey}`}
+                  className="ayline-progress block h-full origin-left bg-gradient-to-r from-[#8f4b26] via-[#c37a3a] to-[#e2bd83]"
+                  style={{ animation: `ayline-progress ${AUTOPLAY_MS}ms linear forwards` }}
+                />
+              )}
+            </div>
           </div>
         </div>
       </div>
 
-      <div className="mt-3 flex gap-1.5 overflow-x-auto pb-1" aria-label="Choose Ayline image">
+      <div className="mt-3 flex gap-2 overflow-x-auto pb-1" aria-label="Choose Ayline image">
         {images.map((src, index) => (
           <button
             key={src}
@@ -155,20 +173,24 @@ export default function AylineCarousel() {
             onClick={() => choose(index)}
             aria-label={`Show Ayline image ${index + 1}`}
             aria-current={index === active ? "true" : undefined}
-            className={`relative h-11 min-w-[58px] overflow-hidden rounded-md border transition duration-300 ${
+            className={`relative h-12 min-w-[60px] overflow-hidden rounded-sm border bg-[#0a0705] p-[2px] transition duration-300 ${
               index === active
-                ? "border-[#d8ad72] opacity-100 shadow-[0_0_18px_rgba(216,173,114,.14)]"
-                : "border-white/10 opacity-40 hover:-translate-y-0.5 hover:opacity-85"
+                ? "border-[#d8ad72]/85 opacity-100 shadow-[0_0_20px_rgba(181,98,42,.22)]"
+                : "border-[#5c4634]/35 opacity-38 hover:-translate-y-0.5 hover:border-[#d8ad72]/45 hover:opacity-80"
             }`}
           >
-            <Image src={src} alt="" fill sizes="58px" className="object-cover" />
+            <div className="relative h-full w-full overflow-hidden">
+              <Image src={src} alt="" fill sizes="60px" className="object-cover saturate-[.88] contrast-[1.05]" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#2b1408]/35 to-transparent" />
+            </div>
           </button>
         ))}
       </div>
 
-      <p className="mt-2 text-[10px] uppercase tracking-[0.22em] text-white/25">
-        {paused ? "Paused · move away to continue" : "Cinematic sequence · autoplay"}
-      </p>
+      <div className="mt-2 flex items-center gap-2 text-[9px] uppercase tracking-[0.2em] text-white/25">
+        <span className={`h-1.5 w-1.5 ${paused ? "bg-white/20" : "bg-[#c37a3a]"}`} aria-hidden="true" />
+        <span>{paused ? "Paused" : "Auto sequence"}</span>
+      </div>
     </div>
   );
 }
