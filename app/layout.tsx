@@ -3,6 +3,7 @@ import Link from "next/link";
 import "./globals.css";
 import "./artist-images.css";
 import "./ayline-refresh.css";
+import "./pm-responsive.css";
 import ParallaxController from "./ParallaxController";
 import { LanguageProvider, T } from "./LanguageContext";
 
