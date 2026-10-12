@@ -115,21 +115,27 @@ export default function ElisraPage() {
             <p className={styles.sectionIndex}>03 / THE WORLD</p>
             <h2 id="world-title">Between the ancient<br />and the <em>electric.</em></h2>
             <p>Elísa’s visual direction explores a contrast of timeless symbols and futuristic light. A separate space within PM’s, with its own atmosphere.</p>
-            <a href="#visuals" className={styles.textLink}>Explore the visuals <span aria-hidden="true">↗</span></a>
+            <a href="#visuals" className={styles.textLink}>Explore the visual world <span aria-hidden="true">↗</span></a>
           </div>
         </section>
 
-        <section id="visuals" className={styles.visuals} aria-labelledby="visuals-title">
-          <div className={styles.sectionHead}>
-            <p className={styles.sectionIndex}>04 / VISUALS</p>
-            <h2 id="visuals-title">A world in <em>motion.</em></h2>
-            <p>Elísa’s portraits, presented as a first look at the visual world.</p>
-          </div>
-          <div className={styles.visualGrid}>
-            <div className={`${styles.visualPanel} ${heroStyles.portraitOne}`} role="img" aria-label="Elísa artwork one"><span>01 — ORIGIN</span></div>
-            <div className={`${styles.visualPanel} ${heroStyles.portraitTwo}`} role="img" aria-label="Elísa artwork two"><span>02 — FREQUENCY</span></div>
-            <div className={`${styles.visualPanel} ${heroStyles.portraitThree}`} role="img" aria-label="Elísa artwork three"><span>03 — AFTERLIGHT</span></div>
-            <div className={`${styles.visualPanel} ${heroStyles.worldPortrait}`} role="img" aria-label="Elísa artwork four"><span>04 — SIGNAL</span></div>
+        <section
+          id="visuals"
+          aria-labelledby="visuals-title"
+          style={{
+            padding: "clamp(72px, 9vw, 130px) 24px",
+            borderTop: "1px solid rgba(255,255,255,.08)",
+            background: "radial-gradient(circle at 50% 0%, rgba(105,92,255,.12), transparent 38%), #070914",
+          }}
+        >
+          <div style={{ width: "min(100%, 920px)", margin: "0 auto", textAlign: "center" }}>
+            <p className={styles.sectionIndex}>THE VISUAL WORLD</p>
+            <h2 id="visuals-title" style={{ marginTop: 14, marginBottom: 18 }}>
+              A world in <em>motion.</em>
+            </h2>
+            <p style={{ margin: "0 auto", maxWidth: 620, color: "rgba(255,255,255,.58)", lineHeight: 1.8 }}>
+              Elísa’s portraits, presented as a first look at the visual world.
+            </p>
           </div>
         </section>
       </main>
