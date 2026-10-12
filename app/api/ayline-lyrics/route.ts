@@ -2,7 +2,15 @@ import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { NextResponse } from "next/server";
 
-const allowed = new Set(["far-from-me", "set-the-dark-on-fire", "one-more-time", "every-day-i-do"]);
+const allowed = new Set([
+  "far-from-me",
+  "set-the-dark-on-fire",
+  "one-more-time",
+  "every-day-i-do",
+  "its-christmas-when-youre",
+  "thunder-in-my-heart",
+  "from-afar",
+]);
 
 export async function GET(request: Request) {
   const slug = new URL(request.url).searchParams.get("song");
