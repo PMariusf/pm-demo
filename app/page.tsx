@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import AylineLyricsCard from "./AylineLyricsCard";
 import AylineMusicPlayer from "./AylineMusicPlayer";
+import BehindSound from "./BehindSound";
 import CommunityChat from "./CommunityChat";
 
 const songs = [
@@ -91,6 +92,20 @@ export default function Home() {
           </div>
         </article>
       </section>
+
+      <BehindSound
+        artist="Ayline"
+        eyebrow="Behind the Sound · 01"
+        title="Born from the words."
+        intro="The feeling comes first. The arrangement follows it."
+        body="Ayline began with words, memories and emotions that are difficult to say out loud. From there, the music grows around them — piano, cinematic rock, slow-burning builds and a slightly raspy female voice that keeps everything close and human. The goal was never only to create songs, but to make room for longing, regret, love, hope and the quiet moments that stay with you after the music ends."
+        details={[
+          { label: "First idea", value: "Lyrics and emotion" },
+          { label: "Sound", value: "Cinematic rock · piano · atmospheric" },
+          { label: "Voice", value: "Warm · intimate · slightly raspy" },
+          { label: "Feeling", value: "Honest · reflective · powerful" },
+        ]}
+      />
 
       <section className="community-section reveal" id="community">
         <div className="community-slideshow" aria-hidden="true">
