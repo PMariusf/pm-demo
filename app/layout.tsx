@@ -5,6 +5,7 @@ import "./artist-images.css";
 import "./ayline-refresh.css";
 import "./pm-responsive.css";
 import ParallaxController from "./ParallaxController";
+import MobileArtistNav from "./MobileArtistNav";
 import { LanguageProvider, T } from "./LanguageContext";
 
 export const metadata: Metadata = {
@@ -17,6 +18,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="en">
       <body>
         <LanguageProvider>
+          <MobileArtistNav />
           {children}
           <div style={{ background: "#0b0b11", textAlign: "center", padding: "22px" }}>
             <Link href="/lyrics" style={{ color: "#d7b985", textDecoration: "underline", textUnderlineOffset: 5 }}>
