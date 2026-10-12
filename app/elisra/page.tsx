@@ -6,6 +6,7 @@ import ElisaFooter from "../ElisaFooter";
 import { LanguageToggle, T } from "../LanguageContext";
 import styles from "./page.module.css";
 import heroStyles from "./hero.module.css";
+import soundHeroStyles from "./sound-hero.module.css";
 import ElisraParallax from "./ElisraParallax";
 import ElisraMotion from "./ElisraMotion";
 import MusicDeck from "./MusicDeck";
@@ -96,23 +97,32 @@ export default function ElisraPage() {
           </div>
         </section>
 
-        <section id="sound" className={styles.section} aria-labelledby="sound-title">
-          <div className={styles.sectionHead}>
-            <p className={styles.sectionIndex}>02 / SOUND</p>
-            <h2 id="sound-title"><T en={<>Feel the <em>frequency.</em></>} no={<>Kjenn <em>frekvensen.</em></>} /></h2>
-            <p><T en="Three directions for the design concept: rhythm, texture and melody." no="Tre retninger i uttrykket: rytme, tekstur og melodi." /></p>
+        <section id="sound" className={soundHeroStyles.soundHero} aria-labelledby="sound-title">
+          <div className={soundHeroStyles.videoWrap} aria-hidden="true">
+            <video className={soundHeroStyles.video} autoPlay muted loop playsInline preload="metadata">
+              <source src="/images/Elisra/elisa.mp4" type="video/mp4" />
+            </video>
           </div>
-          <div className={styles.soundGrid}>
-            {sounds.map((sound) => (
-              <article className={styles.soundCard} key={sound.name}>
-                <div className={styles.soundTop}><span>{sound.number} / SIGNAL</span><span aria-hidden="true">↗</span></div>
-                <div className={styles.barField} aria-hidden="true">{Array.from({ length: 24 }, (_, i) => <span key={i} style={{ height: `${12 + ((i * 17 + Number(sound.number) * 13) % 56)}%`, animationDelay: `${-(i * 0.075 + Number(sound.number) * 0.11)}s, ${-(i * 0.13)}s`, animationDuration: `${0.72 + (i % 5) * 0.09}s, ${4.2 + (i % 4) * 0.35}s` }} />)}</div>
-                <h3>{sound.name}</h3>
-                <p><T en={sound.detailEn} no={sound.detailNo} /></p>
-              </article>
-            ))}
+          <div className={soundHeroStyles.overlay} aria-hidden="true" />
+          <div className={soundHeroStyles.glow} aria-hidden="true" />
+          <div className={soundHeroStyles.inner}>
+            <div className={styles.sectionHead}>
+              <p className={styles.sectionIndex}>02 / SOUND</p>
+              <h2 id="sound-title"><T en={<>Feel the <em>frequency.</em></>} no={<>Kjenn <em>frekvensen.</em></>} /></h2>
+              <p><T en="Three directions for the design concept: rhythm, texture and melody." no="Tre retninger i uttrykket: rytme, tekstur og melodi." /></p>
+            </div>
+            <div className={styles.soundGrid}>
+              {sounds.map((sound) => (
+                <article className={styles.soundCard} key={sound.name}>
+                  <div className={styles.soundTop}><span>{sound.number} / SIGNAL</span><span aria-hidden="true">↗</span></div>
+                  <div className={styles.barField} aria-hidden="true">{Array.from({ length: 24 }, (_, i) => <span key={i} style={{ height: `${12 + ((i * 17 + Number(sound.number) * 13) % 56)}%`, animationDelay: `${-(i * 0.075 + Number(sound.number) * 0.11)}s, ${-(i * 0.13)}s`, animationDuration: `${0.72 + (i % 5) * 0.09}s, ${4.2 + (i % 4) * 0.35}s` }} />)}</div>
+                  <h3>{sound.name}</h3>
+                  <p><T en={sound.detailEn} no={sound.detailNo} /></p>
+                </article>
+              ))}
+            </div>
+            <p className={styles.disclaimer}><T en="Sound directions are a visual concept, not additional playable tracks." no="Lydretningene er en visuell del av konseptet, ikke flere avspillbare spor." /></p>
           </div>
-          <p className={styles.disclaimer}><T en="Sound directions are a visual concept, not additional playable tracks." no="Lydretningene er en visuell del av konseptet, ikke flere avspillbare spor." /></p>
         </section>
 
         <section id="visuals" aria-labelledby="visuals-title" className="elisa-visual-outro">
