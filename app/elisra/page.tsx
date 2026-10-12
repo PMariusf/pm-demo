@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import BehindSound from "../BehindSound";
 import styles from "./page.module.css";
 import heroStyles from "./hero.module.css";
 import ElisraParallax from "./ElisraParallax";
@@ -7,8 +8,8 @@ import ElisraMotion from "./ElisraMotion";
 import MusicDeck from "./MusicDeck";
 
 export const metadata: Metadata = {
-  title: "Elísra | PM’s",
-  description: "Listen to Elísra and explore her cinematic electronic artist world inside PM’s.",
+  title: "Elísa | PM’s",
+  description: "Listen to Elísa and explore her cinematic electronic artist world inside PM’s.",
 };
 
 const sounds = [
@@ -24,9 +25,10 @@ export default function ElisraPage() {
       <header className={styles.header}>
         <div className={styles.headerInner}>
           <Link href="/" className={styles.pmBrand} aria-label="PM’s home">PM’s <span>/ ARTISTS</span></Link>
-          <nav className={styles.nav} aria-label="Elísra page navigation">
+          <nav className={styles.nav} aria-label="Elísa page navigation">
             <a href="#music">Music</a>
             <a href="#sound">Sound</a>
+            <a href="#story">Story</a>
             <a href="#world">World</a>
             <a href="#visuals">Visuals</a>
             <Link className={styles.backLink} href="/">Back to PM’s <span aria-hidden="true">↗</span></Link>
@@ -35,12 +37,12 @@ export default function ElisraPage() {
       </header>
 
       <main id="content">
-        <section className={`${styles.hero} ${heroStyles.hero}`} aria-labelledby="elisra-title">
+        <section className={`${styles.hero} ${heroStyles.hero}`} aria-labelledby="elisa-title">
           <ElisraParallax />
           <div className={heroStyles.tint} aria-hidden="true" />
           <div className={`${styles.heroInner} ${heroStyles.content}`}>
             <p className={styles.kicker}><span className={styles.statusDot} /> PM’s / ARTIST UNIVERSE</p>
-            <h1 id="elisra-title" className={styles.heroTitle}>Elísra<span aria-hidden="true">.</span></h1>
+            <h1 id="elisa-title" className={styles.heroTitle}>Elísa<span aria-hidden="true">.</span></h1>
             <p className={styles.tagline}>Ancient soul. <em>Future sound.</em></p>
             <p className={styles.intro}>A concept world of driving rhythms, luminous textures and cinematic atmosphere.</p>
             <div className={styles.actions}>
@@ -48,14 +50,14 @@ export default function ElisraPage() {
               <a className={styles.secondary} href="#visuals">The visual world <span aria-hidden="true">↓</span></a>
             </div>
           </div>
-          <div className={`${styles.heroBottom} ${heroStyles.bottom}`} aria-hidden="true"><span>ELÍSRA / VISUAL CONCEPT</span><span>SCROLL TO EXPLORE ↓</span></div>
+          <div className={`${styles.heroBottom} ${heroStyles.bottom}`} aria-hidden="true"><span>ELÍSA / VISUAL CONCEPT</span><span>SCROLL TO EXPLORE ↓</span></div>
         </section>
 
         <section id="music" className={styles.section} aria-labelledby="music-title">
           <div className={styles.sectionHead}>
             <p className={styles.sectionIndex}>01 / MUSIC</p>
             <h2 id="music-title">Enter the <em>sound.</em></h2>
-            <p>Explore Elísra’s growing music library with atmospheric video artwork, custom playback and lyrics where available.</p>
+            <p>Explore Elísa’s growing music library with atmospheric video artwork, custom playback and lyrics where available.</p>
           </div>
           <MusicDeck />
         </section>
@@ -79,12 +81,29 @@ export default function ElisraPage() {
           <p className={styles.disclaimer}>Sound directions are a visual concept, not additional playable tracks.</p>
         </section>
 
+        <div id="story">
+          <BehindSound
+            artist="Elísa"
+            eyebrow="Behind the Sound · 02"
+            title="Born from the beat."
+            intro="The pulse comes first. The emotion stays underneath it."
+            body="Elísa grew from a different kind of energy. The music often begins with rhythm — a bassline, a pulse, a hook or the feeling of being out at night while the world moves around you. Early-2000s trance, techno, happy hardcore and darker electronic textures shape the sound. Heavy drops, deep bass and clear beats bring the momentum, while the vocal keeps an emotional core running through it all."
+            details={[
+              { label: "First idea", value: "Beat and momentum" },
+              { label: "Sound", value: "Trance · techno · happy hardcore" },
+              { label: "Voice", value: "Clear · energetic · emotional" },
+              { label: "Feeling", value: "Free · nocturnal · electric" },
+            ]}
+            variant="electric"
+          />
+        </div>
+
         <section id="world" className={styles.world} aria-labelledby="world-title">
           <ElisraMotion />
           <div className={styles.worldContent}>
             <p className={styles.sectionIndex}>03 / THE WORLD</p>
             <h2 id="world-title">Between the ancient<br />and the <em>electric.</em></h2>
-            <p>Elísra’s visual direction explores a contrast of timeless symbols and futuristic light. A separate space within PM’s, with its own atmosphere.</p>
+            <p>Elísa’s visual direction explores a contrast of timeless symbols and futuristic light. A separate space within PM’s, with its own atmosphere.</p>
             <a href="#visuals" className={styles.textLink}>Explore the visuals <span aria-hidden="true">↗</span></a>
           </div>
         </section>
@@ -93,20 +112,20 @@ export default function ElisraPage() {
           <div className={styles.sectionHead}>
             <p className={styles.sectionIndex}>04 / VISUALS</p>
             <h2 id="visuals-title">A world in <em>motion.</em></h2>
-            <p>Elísra’s portraits, presented as a first look at the visual world.</p>
+            <p>Elísa’s portraits, presented as a first look at the visual world.</p>
           </div>
           <div className={styles.visualGrid}>
-            <div className={`${styles.visualPanel} ${heroStyles.portraitOne}`} role="img" aria-label="Elísra artwork one"><span>01 — ORIGIN</span></div>
-            <div className={`${styles.visualPanel} ${heroStyles.portraitTwo}`} role="img" aria-label="Elísra artwork two"><span>02 — FREQUENCY</span></div>
-            <div className={`${styles.visualPanel} ${heroStyles.portraitThree}`} role="img" aria-label="Elísra artwork three"><span>03 — AFTERLIGHT</span></div>
-            <div className={`${styles.visualPanel} ${heroStyles.worldPortrait}`} role="img" aria-label="Elísra artwork four"><span>04 — SIGNAL</span></div>
+            <div className={`${styles.visualPanel} ${heroStyles.portraitOne}`} role="img" aria-label="Elísa artwork one"><span>01 — ORIGIN</span></div>
+            <div className={`${styles.visualPanel} ${heroStyles.portraitTwo}`} role="img" aria-label="Elísa artwork two"><span>02 — FREQUENCY</span></div>
+            <div className={`${styles.visualPanel} ${heroStyles.portraitThree}`} role="img" aria-label="Elísa artwork three"><span>03 — AFTERLIGHT</span></div>
+            <div className={`${styles.visualPanel} ${heroStyles.worldPortrait}`} role="img" aria-label="Elísa artwork four"><span>04 — SIGNAL</span></div>
           </div>
         </section>
       </main>
 
       <footer className={styles.footer}>
         <Link href="/" className={styles.pmBrand}>PM’s</Link>
-        <span>ELÍSRA / CONCEPT DEMO</span>
+        <span>ELÍSA / CONCEPT DEMO</span>
         <a href="#top">BACK TO TOP ↑</a>
       </footer>
     </div>
