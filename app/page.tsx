@@ -10,9 +10,10 @@ import FooterContact from "./FooterContact";
 import { LanguageToggle, T } from "./LanguageContext";
 
 const songs = [
-  { slug: "far-from-me", title: "Far From Me" },
-  { slug: "set-the-dark-on-fire", title: "Set the Dark on Fire" },
-  { slug: "one-more-time", title: "One More Time" },
+  { slug: "far-from-me", title: "Far From Me", audio: "/audio/ayline/far-from-me.mp3" },
+  { slug: "set-the-dark-on-fire", title: "Set the Dark on Fire", audio: "/audio/ayline/set-the-dark-on-fire.mp3" },
+  { slug: "one-more-time", title: "One More Time", audio: "/audio/ayline/one-more-time.mp3" },
+  { slug: "every-day-i-do", title: "Every Day, I Do", audio: "/audio/ayline/Every%20Day,%20I%20Do.mp3" },
 ] as const;
 
 const logoCropStyle = {
@@ -96,7 +97,7 @@ export default function Home() {
           <div className="panel-heading"><div><h2><T en="Music" no="Musikk" /></h2><p><T en="Discover the sound of Ayline" no="Oppdag lyden av Ayline" /></p></div><button onClick={() => scrollTo("lyrics")}><T en="See All ›" no="Se alle ›" /></button></div>
           <div className="music-panel-body">
             <div className="music-feature"><video autoPlay muted loop playsInline preload="metadata" poster="/images/Ayline/Aylina.png"><source src="/videos/Ayline/rock-singer.mp4" type="video/mp4"/></video><span className="big-play">▶</span><strong>Ayline</strong><small>PM’s artist universe</small></div>
-            <div className="song-list">{songs.map(song => <div className="song-row living-track" key={song.slug}><span className="song-thumb"/><span><strong>{song.title}</strong><small>Ayline</small></span><audio controls preload="none" src={`/audio/ayline/${song.slug}.mp3`} aria-label={`Play ${song.title}`}/></div>)}</div>
+            <div className="song-list">{songs.map(song => <div className="song-row living-track" key={song.slug}><span className="song-thumb"/><span><strong>{song.title}</strong><small>Ayline</small></span><audio controls preload="none" src={song.audio} aria-label={`Play ${song.title}`}/></div>)}</div>
           </div>
         </article>
 
