@@ -1,13 +1,15 @@
+import type { ReactNode } from "react";
 import AylineCarousel from "./AylineCarousel";
 import ElisaCarousel from "./ElisaCarousel";
+import { T } from "./LanguageContext";
 
 type BehindSoundProps = {
   artist: "Ayline" | "Elísa";
-  eyebrow: string;
-  title: string;
-  intro: string;
-  body: string;
-  details: Array<{ label: string; value: string }>;
+  eyebrow: ReactNode;
+  title: ReactNode;
+  intro: ReactNode;
+  body: ReactNode;
+  details: Array<{ label: ReactNode; value: ReactNode; key: string }>;
   variant?: "warm" | "electric";
 };
 
@@ -38,10 +40,10 @@ export default function BehindSound({
         aria-hidden="true"
       />
 
-      <div className="relative mx-auto grid w-[min(100%-38px,1420px)] items-start gap-10 py-20 lg:grid-cols-[minmax(0,.82fr)_minmax(0,1.18fr)] lg:gap-20 lg:py-28">
+      <div className="relative mx-auto grid w-[min(100%-38px,1420px)] items-start gap-10 py-16 sm:py-20 lg:grid-cols-[minmax(0,.82fr)_minmax(0,1.18fr)] lg:gap-20 lg:py-28">
         <div className="min-w-0 self-start">
           <p
-            className={`mb-4 text-[11px] uppercase tracking-[.34em] ${
+            className={`mb-4 text-[11px] uppercase tracking-[.28em] sm:tracking-[.34em] ${
               electric ? "text-cyan-200/65" : "text-[#d9b77f]"
             }`}
           >
@@ -49,27 +51,27 @@ export default function BehindSound({
           </p>
           <h2
             id={`${artist.toLowerCase().replace("í", "i")}-behind-sound-title`}
-            className="m-0 max-w-[10ch] font-serif text-5xl leading-[.98] tracking-[-.035em] text-white sm:text-6xl lg:text-7xl"
+            className="m-0 max-w-[10ch] font-serif text-4xl leading-[.98] tracking-[-.035em] text-white sm:text-6xl lg:text-7xl"
           >
             {title}
           </h2>
-          <p className="mt-6 max-w-md text-base leading-7 text-white/55">{intro}</p>
+          <p className="mt-5 max-w-md text-sm leading-7 text-white/55 sm:mt-6 sm:text-base">{intro}</p>
 
           {artist === "Ayline" && (
-            <div className="mt-8 max-w-[500px]">
+            <div className="mt-7 max-w-[500px] sm:mt-8">
               <AylineCarousel />
             </div>
           )}
 
           {artist === "Elísa" && (
-            <div className="mt-8 max-w-[500px]">
+            <div className="mt-7 max-w-[500px] sm:mt-8">
               <ElisaCarousel />
             </div>
           )}
         </div>
 
         <div className="min-w-0">
-          <div className="mb-8 flex items-center gap-4">
+          <div className="mb-6 flex items-center gap-4 sm:mb-8">
             <span
               className={`h-px w-14 ${electric ? "bg-cyan-200/50" : "bg-[#d9b77f]/60"}`}
               aria-hidden="true"
@@ -77,15 +79,15 @@ export default function BehindSound({
             <span className="text-xs uppercase tracking-[.3em] text-white/40">{artist}</span>
           </div>
 
-          <p className="m-0 max-w-3xl font-serif text-2xl leading-[1.45] text-white/88 sm:text-3xl">
+          <div className="m-0 max-w-3xl whitespace-pre-line font-serif text-xl leading-[1.5] text-white/88 sm:text-3xl">
             {body}
-          </p>
+          </div>
 
-          <div className="mt-10 grid gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 sm:grid-cols-2">
+          <div className="mt-8 grid gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 sm:mt-10 sm:grid-cols-2">
             {details.map((detail) => (
-              <div key={detail.label} className="bg-[#0b0d10]/95 px-5 py-5 sm:px-6">
+              <div key={detail.key} className="bg-[#0b0d10]/95 px-5 py-5 sm:px-6">
                 <span
-                  className={`block text-[10px] uppercase tracking-[.27em] ${
+                  className={`block text-[10px] uppercase tracking-[.24em] sm:tracking-[.27em] ${
                     electric ? "text-cyan-200/55" : "text-[#d9b77f]/75"
                   }`}
                 >
@@ -97,7 +99,10 @@ export default function BehindSound({
           </div>
 
           <p className="mb-0 mt-8 text-sm italic tracking-wide text-white/35">
-            Two artists. Two different ways into the same feeling.
+            <T
+              en="Two artists. Two different ways into the same feeling."
+              no="To artister. To forskjellige veier inn i den samme følelsen."
+            />
           </p>
         </div>
       </div>
