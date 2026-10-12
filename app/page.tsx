@@ -80,7 +80,17 @@ export default function Home() {
         </video>
         <div className="shell hero-content">
           <p className="hero-kicker">MUSIC · PEOPLE · WORDS · A BRIGHTER YOU</p>
-          <h1>Ayline</h1>
+          <h1 className="sr-only">Ayline</h1>
+          <div style={{ width: "min(560px, 78vw)", margin: "-20px 0 -28px -34px" }}>
+            <Image
+              src="/images/ayline-logo.png"
+              alt="Ayline"
+              width={1536}
+              height={1024}
+              priority
+              style={{ width: "100%", height: "auto", objectFit: "contain" }}
+            />
+          </div>
           <p className="tagline">Live it, Feel it Be It</p>
           <p className="hero-description">Music for the quiet moments, the loud feelings<br />and everything in between.</p>
           <div className="hero-actions">
@@ -149,12 +159,8 @@ export default function Home() {
     </main>
     <footer className="footer">
       <div className="shell footer-inner">
-        <Link
-          href="/"
-          aria-label="PM’s home"
-          style={{ width: 118, height: 46, overflow: "hidden", display: "block", flex: "0 0 auto" }}
-        >
-          <Image src="/images/pm-logo.png" alt="PM’s" width={300} height={300} style={logoCropStyle} />
+        <Link href="/" aria-label="Ayline home" style={{ width: 154, display: "block", flex: "0 0 auto" }}>
+          <Image src="/images/ayline-logo.png" alt="Ayline" width={1536} height={1024} style={{ width: "100%", height: "auto" }} />
         </Link>
         <span>Live it, Feel it Be It</span>
         <Link className="footer-artist-link" href="/elisra">Explore Elísa ↗</Link>
