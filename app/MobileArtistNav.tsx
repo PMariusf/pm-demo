@@ -1,16 +1,33 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import { LanguageToggle, T } from "./LanguageContext";
 import styles from "./MobileArtistNav.module.css";
 
-type MobileArtistNavProps = {
-  variant?: "warm" | "electric";
-  links: Array<{ href: string; en: string; no: string }>;
-};
+const aylineLinks = [
+  { href: "/#music", en: "Music", no: "Musikk" },
+  { href: "/#lyrics", en: "Lyrics", no: "Tekster" },
+  { href: "/#community", en: "Feel / Chat", no: "Følelser / Chat" },
+  { href: "/elisra", en: "Explore Elísa", no: "Utforsk Elísa" },
+];
 
-export default function MobileArtistNav({ variant = "warm", links }: MobileArtistNavProps) {
+const elisaLinks = [
+  { href: "/elisra#music", en: "Music", no: "Musikk" },
+  { href: "/elisra#story", en: "Story", no: "Historie" },
+  { href: "/elisra#world", en: "World", no: "Verden" },
+  { href: "/elisra#sound", en: "Sound", no: "Lyd" },
+  { href: "/elisra#visuals", en: "Visuals", no: "Visuelt" },
+  { href: "/", en: "Back to Ayline", no: "Tilbake til Ayline" },
+];
+
+export default function MobileArtistNav() {
+  const pathname = usePathname();
+  const electric = pathname.startsWith("/elisra");
+  const links = electric ? elisaLinks : aylineLinks;
   const [open, setOpen] = useState(false);
+
+  useEffect(() => setOpen(false), [pathname]);
 
   useEffect(() => {
     if (!open) return;
@@ -35,7 +52,7 @@ export default function MobileArtistNav({ variant = "warm", links }: MobileArtis
       </button>
 
       {open && (
-        <div id="mobile-artist-menu" className={`${styles.panel} ${variant === "electric" ? styles.electricPanel : ""}`}>
+        <div id="mobile-artist-menu" className={`${styles.panel} ${electric ? styles.electricPanel : ""}`}>
           <nav className={styles.links} aria-label="Mobile navigation">
             {links.map((link) => (
               <a key={`${link.href}-${link.en}`} href={link.href} onClick={() => setOpen(false)}>
@@ -46,7 +63,7 @@ export default function MobileArtistNav({ variant = "warm", links }: MobileArtis
           </nav>
           <div className={styles.tools}>
             <span className={styles.label}><T en="Language" no="Språk" /></span>
-            <LanguageToggle className={variant === "electric" ? "language-toggle language-toggle-electric" : "language-toggle"} />
+            <LanguageToggle className={electric ? "language-toggle language-toggle-electric" : "language-toggle"} />
           </div>
         </div>
       )}
