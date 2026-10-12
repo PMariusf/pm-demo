@@ -7,6 +7,9 @@ const songs = [
   { slug: "set-the-dark-on-fire", title: "Set the Dark on Fire", audio: "/audio/ayline/set-the-dark-on-fire.mp3" },
   { slug: "one-more-time", title: "One More Time", audio: "/audio/ayline/one-more-time.mp3" },
   { slug: "every-day-i-do", title: "Every Day, I Do", audio: "/audio/ayline/Every%20Day,%20I%20Do.mp3" },
+  { slug: "its-christmas-when-youre", title: "It's Christmas When You're", audio: "/audio/ayline/It%27s%20Christmas%20When%20You%27re.mp3" },
+  { slug: "thunder-in-my-heart", title: "Thunder in My Heart", audio: "/audio/ayline/Thunder%20in%20My%20Heart.mp3" },
+  { slug: "from-afar", title: "From Afar", audio: "/audio/ayline/From%20Afar.mp3" },
 ] as const;
 
 export default function AylineLyricsCard() {
