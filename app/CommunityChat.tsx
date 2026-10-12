@@ -38,7 +38,13 @@ export default function CommunityChat() {
     } catch {
       // Chat still works when local storage is unavailable.
     }
-    listRef.current?.scrollTo({ top: listRef.current.scrollHeight, behavior: "smooth" });
+
+    requestAnimationFrame(() => {
+      listRef.current?.scrollTo({
+        top: listRef.current.scrollHeight,
+        behavior: "smooth",
+      });
+    });
   }, [messages, loading]);
 
   async function send(event: FormEvent<HTMLFormElement>) {
@@ -84,9 +90,14 @@ export default function CommunityChat() {
   return (
     <div className="mx-auto mt-8 w-full max-w-3xl rounded-2xl border border-white/15 bg-black/45 p-4 shadow-2xl backdrop-blur-md sm:p-6">
       <div className="mb-4 flex items-center justify-between gap-4 border-b border-white/10 pb-4">
-        <div>
-          <p className="m-0 text-[11px] uppercase tracking-[0.3em] text-[#d9b77f]">PM’s · Ayline</p>
-          <h3 className="mt-1 font-serif text-2xl text-white">Talk about what you feel</h3>
+        <div className="flex items-center gap-3">
+          <div className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-[#d8ad72]/40 bg-[#d8ad72]/10 font-serif text-lg text-[#e8c08a]">
+            A
+          </div>
+          <div>
+            <p className="m-0 text-[11px] uppercase tracking-[0.3em] text-[#d9b77f]">PM’s · Ayline</p>
+            <h3 className="mt-1 font-serif text-2xl text-white">Talk about what you feel</h3>
+          </div>
         </div>
         <button
           type="button"
@@ -97,25 +108,56 @@ export default function CommunityChat() {
         </button>
       </div>
 
-      <div ref={listRef} className="max-h-[430px] min-h-[220px] space-y-3 overflow-y-auto pr-1" aria-live="polite">
-        {messages.map((message, index) => (
-          <div key={`${message.role}-${index}`} className={`flex ${message.role === "user" ? "justify-end" : "justify-start"}`}>
-            <p
-              className={`m-0 max-w-[86%] whitespace-pre-wrap rounded-2xl px-4 py-3 text-sm leading-6 sm:text-[15px] ${
-                message.role === "user"
-                  ? "rounded-br-md bg-[#d8ad72] text-[#17100a]"
-                  : "rounded-bl-md border border-white/10 bg-white/[0.07] text-white/85"
-              }`}
+      <div
+        ref={listRef}
+        className="max-h-[430px] min-h-[220px] space-y-4 overflow-y-auto pr-1"
+        aria-live="polite"
+        aria-busy={loading}
+      >
+        {messages.map((message, index) => {
+          const isUser = message.role === "user";
+
+          return (
+            <div
+              key={`${message.role}-${index}`}
+              className={`flex items-end gap-2 ${isUser ? "justify-end" : "justify-start"}`}
             >
-              {message.content}
-            </p>
-          </div>
-        ))}
+              {!isUser && (
+                <div className="grid h-8 w-8 shrink-0 place-items-center rounded-full border border-[#d8ad72]/30 bg-[#d8ad72]/10 font-serif text-sm text-[#e8c08a]">
+                  A
+                </div>
+              )}
+              <div className={`max-w-[86%] ${isUser ? "text-right" : "text-left"}`}>
+                <span className="mb-1 block px-1 text-[10px] uppercase tracking-[0.18em] text-white/35">
+                  {isUser ? "You" : "Ayline"}
+                </span>
+                <p
+                  className={`m-0 whitespace-pre-wrap rounded-2xl px-4 py-3 text-left text-sm leading-6 shadow-lg sm:text-[15px] ${
+                    isUser
+                      ? "rounded-br-md bg-[#d8ad72] text-[#17100a] shadow-[#d8ad72]/10"
+                      : "rounded-bl-md border border-white/10 bg-white/[0.07] text-white/85 shadow-black/20"
+                  }`}
+                >
+                  {message.content}
+                </p>
+              </div>
+            </div>
+          );
+        })}
+
         {loading && (
-          <div className="flex justify-start">
-            <p className="m-0 rounded-2xl rounded-bl-md border border-white/10 bg-white/[0.07] px-4 py-3 text-sm text-white/55">
-              Thinking…
-            </p>
+          <div className="flex items-end gap-2 justify-start">
+            <div className="grid h-8 w-8 shrink-0 place-items-center rounded-full border border-[#d8ad72]/30 bg-[#d8ad72]/10 font-serif text-sm text-[#e8c08a]">
+              A
+            </div>
+            <div>
+              <span className="mb-1 block px-1 text-[10px] uppercase tracking-[0.18em] text-white/35">Ayline is typing</span>
+              <div className="flex w-fit items-center gap-1.5 rounded-2xl rounded-bl-md border border-white/10 bg-white/[0.07] px-4 py-4" aria-label="Ayline is typing">
+                <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-white/55" />
+                <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-white/55 [animation-delay:150ms]" />
+                <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-white/55 [animation-delay:300ms]" />
+              </div>
+            </div>
           </div>
         )}
       </div>
