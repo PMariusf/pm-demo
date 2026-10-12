@@ -14,6 +14,15 @@ export default function ElisaFooter() {
     <footer className="elisa-footer">
       <div className="elisa-footer-grid">
         <div className="elisa-footer-brand">
+          <Link href="/" aria-label="PM’s home" className="elisa-footer-pm-logo">
+            <Image
+              src="/images/pm-logo.png"
+              alt="PM’s"
+              width={300}
+              height={300}
+              style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }}
+            />
+          </Link>
           <Link href="/elisra" aria-label="Elísa home" className="elisa-footer-logo">
             <Image
               src="/images/elisa-logo.png"
